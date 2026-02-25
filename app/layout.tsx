@@ -17,10 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-white pb-20 md:pb-0 min-h-screen`}>
+    <html lang="ar" dir="rtl">
+      <body className={`${inter.className} bg-white pb-20 md:pb-0 min-h-screen text-black`}>
         <Header />
-        <main className="max-w-5xl mx-auto min-h-[calc(100vh-64px)]">
+        <main className="max-w-5xl mx-auto min-h-[calc(100vh-80px)] bg-white">
           {children}
         </main>
         <BottomNav />
