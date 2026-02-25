@@ -151,7 +151,7 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                         {/* Social placeholders if needed */}
                     </div>
                     <p className="text-center text-[10px] text-gray-400 uppercase tracking-widest font-bold">
-                        Algeria COD Store © {new Date().getFullYear()}
+                        Boutique Celinaa © {new Date().getFullYear()}
                     </p>
                 </div>
             </div>

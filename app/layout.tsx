@@ -7,7 +7,7 @@ import BottomNav from '@/components/BottomNav';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Algeria COD Store',
+  title: 'Boutique Celinaa',
   description: 'Modern mobile-first e-commerce store with COD in Algeria',
 };
 

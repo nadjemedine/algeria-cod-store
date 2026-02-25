@@ -1,6 +1,6 @@
 export const metadata = {
     title: 'Sanity Studio',
-    description: 'Sanity Studio for Algeria COD Store',
+    description: 'Sanity Studio for Boutique Celinaa',
 }
 
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
