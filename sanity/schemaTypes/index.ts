@@ -4,6 +4,7 @@ import { productSchema } from './product'
 import { groupSchema } from './group'
 import { deliveryPricesSchema } from './deliveryPrice'
 import { orderSchema } from './order'
+import { menuSchema } from './menu'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
     types: [
@@ -11,5 +12,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
         groupSchema,
         deliveryPricesSchema,
         orderSchema,
+        menuSchema,
     ],
 }
