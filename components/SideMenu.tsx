@@ -146,7 +146,7 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                 </nav>
 
                 {/* Footer */}
-                <div className="p-6 bg-gray-50 border-t space-y-4">
+                <div className="p-6 bg-white border-t space-y-4">
                     <div className="flex justify-center gap-4">
                         {/* Social placeholders if needed */}
                     </div>
