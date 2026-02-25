@@ -3,15 +3,22 @@ import { CheckCircle } from 'lucide-react';
 
 export default function ThankYouPage() {
     return (
-        <div className="min-h-[70vh] flex flex-col items-center justify-center p-4">
-            <CheckCircle className="h-24 w-24 text-green-500 mb-6" />
-            <h1 className="text-3xl font-bold text-center mb-2">Order Confirmed!</h1>
-            <p className="text-gray-600 text-center mb-8 max-w-md">
-                Thank you for your order. We will contact you shortly to confirm your delivery details.
-            </p>
-            <Link href="/">
-                <button className="bg-black text-white px-8 py-3 rounded-md font-semibold hover:bg-gray-800 transition">
-                    Continue Shopping
+        <div className="min-h-[80vh] flex flex-col items-center justify-center p-8 text-center space-y-8">
+            <div className="relative">
+                <div className="absolute inset-0 bg-green-100 rounded-full blur-2xl opacity-50 animate-pulse" />
+                <CheckCircle className="h-28 w-28 text-green-500 relative z-10" />
+            </div>
+
+            <div className="space-y-4">
+                <h1 className="text-4xl font-black text-gray-900 tracking-tight italic">Merci !</h1>
+                <p className="text-gray-400 font-medium max-w-xs mx-auto leading-relaxed">
+                    Votre commande a été confirmée avec succès. Nous vous contacterons très prochainement pour valider les détails de livraison.
+                </p>
+            </div>
+
+            <Link href="/" className="w-full max-w-xs">
+                <button className="w-full bg-primary text-white px-8 py-5 rounded-[24px] font-black text-lg shadow-xl shadow-primary/20 active:scale-95 transition-all">
+                    Retour à l'accueil
                 </button>
             </Link>
         </div>

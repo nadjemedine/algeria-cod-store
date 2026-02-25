@@ -85,30 +85,30 @@ export async function POST(req: Request) {
                 ).join('');
 
                 await resend.emails.send({
-                    from: 'Acme <onboarding@resend.dev>', // Resend's default testing sender
+                    from: 'Boutique Celinaa <onboarding@resend.dev>', // Resend's default testing sender
                     to: process.env.NOTIFICATION_EMAIL as string,
-                    subject: `New Order Received! (${data.totalPrice} DZD)`,
+                    subject: `Nouvelle Commande Reçue ! (${data.totalPrice} DA)`,
                     html: `
-                        <h2>New Order Alert 🛒</h2>
-                        <p>You have received a new order on your store.</p>
+                        <h2>Alerte Nouvelle Commande 🛒</h2>
+                        <p>Vous avez reçu une nouvelle commande sur votre boutique.</p>
                         
-                        <h3>Customer Details:</h3>
+                        <h3>Détails du Client :</h3>
                         <ul>
-                            <li><b>Name:</b> ${data.fullName}</li>
-                            <li><b>Phone:</b> ${data.phone}</li>
-                            <li><b>Wilaya:</b> ${data.wilaya}</li>
-                            <li><b>Delivery Type:</b> ${data.deliveryType}</li>
-                            <li><b>Address:</b> ${data.address || 'N/A'}</li>
+                            <li><b>Nom :</b> ${data.fullName}</li>
+                            <li><b>Téléphone :</b> ${data.phone}</li>
+                            <li><b>Wilaya :</b> ${data.wilaya}</li>
+                            <li><b>Type de Livraison :</b> ${data.deliveryType === 'home' ? 'À Domicile' : 'Bureau Yalidine'}</li>
+                            <li><b>Adresse :</b> ${data.address || 'N/A'}</li>
                         </ul>
 
-                        <h3>Order Details:</h3>
+                        <h3>Détails de la Commande :</h3>
                         <ul>${itemsListHtml}</ul>
                         
-                        <h3>Pricing summary:</h3>
+                        <h3>Résumé des Prix :</h3>
                         <ul>
-                            <li><b>Subtotal:</b> ${data.subtotal} DZD</li>
-                            <li><b>Delivery:</b> ${data.deliveryPrice} DZD</li>
-                            <li><b>Total:</b> ${data.totalPrice} DZD</li>
+                            <li><b>Sous-total :</b> ${data.subtotal.toLocaleString()} DA</li>
+                            <li><b>Livraison :</b> ${data.deliveryPrice.toLocaleString()} DA</li>
+                            <li><b>Total :</b> ${data.totalPrice.toLocaleString()} DA</li>
                         </ul>
                     `
                 });

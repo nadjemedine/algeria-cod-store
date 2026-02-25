@@ -1,17 +1,17 @@
-import { getGroupsWithProducts } from '@/lib/api';
-import StoreContent from '@/components/StoreContent';
+import { getProducts } from '@/lib/api';
+import ProductGrid from '@/components/ProductGrid';
 
 export default async function StorePage() {
-  let groupsWithProducts = [];
+  let products = [];
   try {
-    groupsWithProducts = await getGroupsWithProducts();
+    products = await getProducts();
   } catch (error) {
-    console.error("Error fetching groups.", error);
+    console.error("Error fetching products.", error);
   }
 
   return (
-    <div className="max-w-5xl mx-auto p-4 md:p-8 min-h-screen">
-      <StoreContent groups={groupsWithProducts} />
+    <div className="bg-white min-h-screen">
+      <ProductGrid products={products} />
     </div>
   );
 }

@@ -10,11 +10,17 @@ export const productSchema = {
         },
         {
             name: 'image',
-            title: 'Image',
+            title: 'Image Principale',
             type: 'image',
             options: {
                 hotspot: true,
             },
+        },
+        {
+            name: 'images',
+            title: 'Galerie d\'images',
+            type: 'array',
+            of: [{ type: 'image' }],
         },
         {
             name: 'price',
@@ -55,12 +61,6 @@ export const productSchema = {
             name: 'hidden',
             title: 'Hidden',
             type: 'boolean',
-        },
-        {
-            name: 'group',
-            title: 'Group',
-            type: 'reference',
-            to: [{ type: 'group' }],
         },
     ],
 };

@@ -21,13 +21,19 @@ export default function CheckoutForm({ deliveryPrices }: CheckoutFormProps) {
     const [address, setAddress] = useState('');
     const [notes, setNotes] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errors, setErrors] = useState<{[key: string]: string}>({});
 
     if (items.length === 0) {
         return (
             <div className="text-center py-20 flex flex-col items-center">
-                <ShoppingBag className="h-16 w-16 text-gray-300 mb-4" />
-                <h2 className="text-xl font-bold">Your cart is empty</h2>
-                <button onClick={() => router.push('/')} className="mt-4 px-6 py-2 bg-black text-white rounded-md">Shop Now</button>
+                <ShoppingBag className="h-16 w-16 text-gray-200 mb-4" />
+                <h2 className="text-xl font-bold text-gray-800">Votre panier est vide</h2>
+                <button
+                    onClick={() => router.push('/')}
+                    className="mt-6 px-8 py-3 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-primary/20 active:scale-95 transition-all"
+                >
+                    Continuer vos achats
+                </button>
             </div>
         );
     }
@@ -42,10 +48,35 @@ export default function CheckoutForm({ deliveryPrices }: CheckoutFormProps) {
     const subtotal = totalPrice();
     const total = subtotal + (deliveryPrice || 0);
 
+    const validateForm = () => {
+        const newErrors: {[key: string]: string} = {};
+        
+        if (!fullName.trim()) {
+            newErrors.fullName = 'Le nom complet est requis';
+        }
+        
+        if (!phone.trim()) {
+            newErrors.phone = 'Le numéro de téléphone est requis';
+        } else if (!/^\d{9,10}$/.test(phone.replace(/\D/g, ''))) {
+            newErrors.phone = 'Numéro de téléphone invalide';
+        }
+        
+        if (!wilaya) {
+            newErrors.wilaya = 'Veuillez sélectionner votre wilaya';
+        }
+        
+        if (!address.trim()) {
+            newErrors.address = 'L\'adresse est requise';
+        }
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!wilaya) {
-            alert('Please select your state (Wilaya)');
+        
+        if (!validateForm()) {
             return;
         }
 
@@ -74,113 +105,182 @@ export default function CheckoutForm({ deliveryPrices }: CheckoutFormProps) {
                 clearCart();
                 router.push('/thank-you');
             } else {
-                alert('Something went wrong, please try again.');
+                alert('Une erreur est survenue, veuillez réessayer.');
                 setIsSubmitting(false);
             }
         } catch (error) {
-            alert('Network error, please try again.');
+            alert('Erreur réseau, veuillez réessayer.');
             setIsSubmitting(false);
         }
     };
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-12">
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-                    <Truck className="h-5 w-5 text-gray-700" />
-                    Shipping Information
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-12 px-4">
+            <div className="bg-white p-6 rounded-[32px] shadow-sm border border-gray-100">
+                <h2 className="text-xl font-bold mb-8 flex items-center gap-3 text-gray-800">
+                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                        <Truck className="h-5 w-5 text-primary" />
+                    </div>
+                    Informations de Livraison
                 </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="space-y-1">
-                        <label className="text-sm font-medium text-gray-700">Full Name *</label>
-                        <input required type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} className="w-full border rounded-md px-4 py-2 focus:ring-2 focus:ring-black outline-none" placeholder="First and Last Name" />
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-gray-600 ml-1">Nom Complet *</label>
+                        <input 
+                            type="text" 
+                            value={fullName} 
+                            onChange={(e) => {
+                                setFullName(e.target.value);
+                                if (errors.fullName) setErrors(prev => ({...prev, fullName: ''}));
+                            }}
+                            className={`w-full border-2 rounded-2xl px-5 py-3.5 focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-gray-300 ${errors.fullName ? 'border-red-500' : 'border-gray-50'}`}
+                            placeholder="Prénom et Nom" 
+                            aria-invalid={!!errors.fullName}
+                            aria-describedby={errors.fullName ? "fullName-error" : undefined}
+                        />
+                        {errors.fullName && (
+                            <p id="fullName-error" className="text-red-500 text-xs mt-1">{errors.fullName}</p>
+                        )}
                     </div>
 
-                    <div className="space-y-1">
-                        <label className="text-sm font-medium text-gray-700">Phone Number *</label>
-                        <input required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full border rounded-md px-4 py-2 focus:ring-2 focus:ring-black outline-none block" placeholder="05XX XX XX XX" />
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-gray-600 ml-1">Numéro de Téléphone *</label>
+                        <input 
+                            type="tel" 
+                            value={phone} 
+                            onChange={(e) => {
+                                setPhone(e.target.value);
+                                if (errors.phone) setErrors(prev => ({...prev, phone: ''}));
+                            }}
+                            className={`w-full border-2 rounded-2xl px-5 py-3.5 focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-gray-300 ${errors.phone ? 'border-red-500' : 'border-gray-50'}`}
+                            placeholder="05XX XX XX XX" 
+                            aria-invalid={!!errors.phone}
+                            aria-describedby={errors.phone ? "phone-error" : undefined}
+                        />
+                        {errors.phone && (
+                            <p id="phone-error" className="text-red-500 text-xs mt-1">{errors.phone}</p>
+                        )}
                     </div>
 
-                    <div className="space-y-1">
-                        <label className="text-sm font-medium text-gray-700">Wilaya *</label>
-                        <select required value={wilaya} onChange={(e) => setWilaya(e.target.value)} className="w-full border rounded-md px-4 py-2 focus:ring-2 focus:ring-black outline-none bg-white">
-                            <option value="" disabled>Select your Wilaya</option>
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-gray-600 ml-1">Wilaya *</label>
+                        <select 
+                            value={wilaya} 
+                            onChange={(e) => {
+                                setWilaya(e.target.value);
+                                if (errors.wilaya) setErrors(prev => ({...prev, wilaya: ''}));
+                            }}
+                            className={`w-full border-2 rounded-2xl px-5 py-3.5 focus:ring-4 focus:ring-primary/5 outline-none transition-all bg-white appearance-none ${errors.wilaya ? 'border-red-500' : 'border-gray-50'}`}
+                            style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\' stroke=\'%23a1a1aa\'%3E%3Cpath stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M19 9l-7 7-7-7\'%3E%3C/path%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1rem center', backgroundSize: '1.2rem' }}
+                            aria-invalid={!!errors.wilaya}
+                            aria-describedby={errors.wilaya ? "wilaya-error" : undefined}
+                        >
+                            <option value="" disabled>Sélectionnez votre Wilaya</option>
                             {ALGERIAN_STATES.map((state) => (
                                 <option key={state} value={state}>{state}</option>
                             ))}
                         </select>
+                        {errors.wilaya && (
+                            <p id="wilaya-error" className="text-red-500 text-xs mt-1">{errors.wilaya}</p>
+                        )}
                     </div>
 
                     <div className="space-y-3 pt-2">
-                        <label className="text-sm font-medium text-gray-700">Delivery Type *</label>
-                        <div className="grid grid-cols-2 gap-3">
-                            <label className={`cursor-pointer flex flex-col items-center justify-center border rounded-lg p-3 transition ${deliveryType === 'home' ? 'border-black bg-gray-50 ring-1 ring-black' : 'border-gray-200 hover:border-gray-300'}`}>
+                        <label className="text-sm font-bold text-gray-600 ml-1">Type de Livraison *</label>
+                        <div className="grid grid-cols-2 gap-4">
+                            <label className={`cursor-pointer flex flex-col items-center justify-center border-2 rounded-[24px] p-5 transition-all duration-300 ${deliveryType === 'home' ? 'border-primary bg-primary/5' : 'border-gray-50 hover:border-gray-200 bg-gray-50/50'}`}>
                                 <input type="radio" className="sr-only" name="deliveryType" value="home" checked={deliveryType === 'home'} onChange={() => setDeliveryType('home')} />
-                                <MapPin className={`h-6 w-6 mb-1 ${deliveryType === 'home' ? 'text-black' : 'text-gray-400'}`} />
-                                <span className={`text-sm font-medium ${deliveryType === 'home' ? 'text-black' : 'text-gray-600'}`}>Home Delivery</span>
+                                <MapPin className={`h-7 w-7 mb-2 ${deliveryType === 'home' ? 'text-primary' : 'text-gray-300'}`} />
+                                <span className={`text-sm font-bold ${deliveryType === 'home' ? 'text-primary' : 'text-gray-500'}`}>À Domicile</span>
                             </label>
 
-                            <label className={`cursor-pointer flex flex-col items-center justify-center border rounded-lg p-3 transition ${deliveryType === 'office' ? 'border-black bg-gray-50 ring-1 ring-black' : 'border-gray-200 hover:border-gray-300'}`}>
+                            <label className={`cursor-pointer flex flex-col items-center justify-center border-2 rounded-[24px] p-5 transition-all duration-300 ${deliveryType === 'office' ? 'border-primary bg-primary/5' : 'border-gray-50 hover:border-gray-200 bg-gray-50/50'}`}>
                                 <input type="radio" className="sr-only" name="deliveryType" value="office" checked={deliveryType === 'office'} onChange={() => setDeliveryType('office')} />
-                                <Building className={`h-6 w-6 mb-1 ${deliveryType === 'office' ? 'text-black' : 'text-gray-400'}`} />
-                                <span className={`text-sm font-medium ${deliveryType === 'office' ? 'text-black' : 'text-gray-600'}`}>Office Delivery</span>
+                                <Building className={`h-7 w-7 mb-2 ${deliveryType === 'office' ? 'text-primary' : 'text-gray-300'}`} />
+                                <span className={`text-sm font-bold ${deliveryType === 'office' ? 'text-primary' : 'text-gray-500'}`}>Bureau Yalidine</span>
                             </label>
                         </div>
                     </div>
 
-                    <div className="space-y-1">
-                        <label className="text-sm font-medium text-gray-700">Exact Address *</label>
-                        <input required type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="w-full border rounded-md px-4 py-2 focus:ring-2 focus:ring-black outline-none" placeholder="Street, Building, etc." />
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-gray-600 ml-1">Adresse Exacte *</label>
+                        <input 
+                            type="text" 
+                            value={address} 
+                            onChange={(e) => {
+                                setAddress(e.target.value);
+                                if (errors.address) setErrors(prev => ({...prev, address: ''}));
+                            }}
+                            className={`w-full border-2 rounded-2xl px-5 py-3.5 focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-gray-300 ${errors.address ? 'border-red-500' : 'border-gray-50'}`}
+                            placeholder="Rue, Bâtiment, etc." 
+                            aria-invalid={!!errors.address}
+                            aria-describedby={errors.address ? "address-error" : undefined}
+                        />
+                        {errors.address && (
+                            <p id="address-error" className="text-red-500 text-xs mt-1">{errors.address}</p>
+                        )}
                     </div>
 
-                    <div className="space-y-1">
-                        <label className="text-sm font-medium text-gray-700">Order Notes (Optional)</label>
-                        <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className="w-full border rounded-md px-4 py-2 focus:ring-2 focus:ring-black outline-none resize-none h-20" placeholder="Any special instructions?" />
+                    <div className="space-y-2">
+                        <label className="text-sm font-bold text-gray-600 ml-1">Notes de Commande (Optionnel)</label>
+                        <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className="w-full border-2 border-gray-50 rounded-2xl px-5 py-3.5 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-gray-300 resize-none h-24" placeholder="Instructions spéciales..." />
                     </div>
 
-                    <button type="submit" disabled={isSubmitting} className="w-full bg-black text-white py-4 rounded-lg font-bold flex items-center justify-center mt-6 hover:bg-gray-800 transition disabled:bg-gray-400 disabled:cursor-not-allowed">
-                        {isSubmitting ? 'Processing...' : `Confirm Order - ${total} DZD`}
+                    <button type="submit" disabled={isSubmitting} className="w-full bg-primary text-white py-5 rounded-2xl font-black text-lg flex items-center justify-center mt-8 hover:opacity-90 shadow-xl shadow-primary/20 transition-all active:scale-95 disabled:bg-gray-200 disabled:shadow-none disabled:cursor-not-allowed">
+                        {isSubmitting ? 'Traitement...' : `Confirmer la Commande - ${total.toLocaleString()} DA`}
                     </button>
                 </form>
             </div>
 
-            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 h-fit space-y-6">
-                <h2 className="text-xl font-bold flex items-center gap-2">
-                    <ShieldCheck className="h-5 w-5 text-gray-700" />
-                    Order Summary
+            <div className="bg-gray-50 p-8 rounded-[32px] border border-gray-100 h-fit space-y-8">
+                <h2 className="text-xl font-bold flex items-center gap-3 text-gray-800">
+                    <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                        <ShieldCheck className="h-5 w-5 text-green-500" />
+                    </div>
+                    Résumé de la Commande
                 </h2>
 
-                <div className="divide-y text-sm">
+                <div className="divide-y divide-gray-100 -mx-2">
                     {items.map((item) => (
-                        <div key={`${item._id}-${item.selectedSize}`} className="flex justify-between py-3">
-                            <div className="flex gap-3">
-                                <div className="relative w-12 h-12 bg-white rounded border overflow-hidden">
-                                    {item.image ? <img src={item.image} alt={item.name} className="object-cover w-full h-full" /> : <div className="w-full h-full bg-gray-100" />}
+                        <div key={`${item._id}-${item.selectedSize}`} className="flex justify-between py-4 px-2">
+                            <div className="flex gap-4">
+                                <div className="relative w-16 h-16 bg-white rounded-2xl border border-gray-100 overflow-hidden shrink-0">
+                                    {item.image ? <img src={item.image} alt={item.name} className="object-cover w-full h-full" /> : <div className="w-full h-full bg-gray-50" />}
+                                    <div className="absolute top-0 right-0 bg-primary text-white text-[10px] font-black px-2 py-0.5 rounded-bl-lg">
+                                        x{item.quantity}
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className="font-semibold">{item.name}</p>
-                                    <p className="text-gray-500 text-xs">Qty: {item.quantity} {item.selectedSize ? `| Size: ${item.selectedSize}` : ''}</p>
+                                <div className="flex flex-col justify-center">
+                                    <p className="font-bold text-gray-800 leading-tight">{item.name}</p>
+                                    <p className="text-gray-400 text-xs mt-1">{item.selectedSize ? `Taille: ${item.selectedSize}` : 'Taille Unique'}</p>
                                 </div>
                             </div>
-                            <p className="font-medium whitespace-nowrap">{item.price * item.quantity} DZD</p>
+                            <div className="flex items-center">
+                                <p className="font-black text-gray-800">{(item.price * item.quantity).toLocaleString()} DA</p>
+                            </div>
                         </div>
                     ))}
                 </div>
 
-                <div className="border-t pt-4 space-y-2">
-                    <div className="flex justify-between text-gray-600">
-                        <span>Subtotal</span>
-                        <span>{subtotal} DZD</span>
+                <div className="bg-white p-6 rounded-2xl border border-gray-100 space-y-3">
+                    <div className="flex justify-between text-gray-500 font-medium">
+                        <span>Sous-total</span>
+                        <span>{subtotal.toLocaleString()} DA</span>
                     </div>
-                    <div className="flex justify-between text-gray-600">
-                        <span>Delivery {wilaya ? `(${wilaya})` : ''}</span>
-                        <span>{wilaya ? (deliveryPrice ? `${deliveryPrice} DZD` : 'Free') : 'Calculated next step'}</span>
+                    <div className="flex justify-between text-gray-500 font-medium">
+                        <span>Livraison {wilaya ? `(${wilaya})` : ''}</span>
+                        <span>{wilaya ? (deliveryPrice ? `${deliveryPrice.toLocaleString()} DA` : 'Gratuite') : 'Calculée ensuite'}</span>
                     </div>
-                    <div className="flex justify-between font-bold text-xl pt-4 border-t border-gray-200">
+                    <div className="flex justify-between font-black text-2xl pt-4 border-t border-gray-50 text-gray-900">
                         <span>Total</span>
-                        <span>{total} DZD</span>
+                        <span className="text-primary">{total.toLocaleString()} DA</span>
                     </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-[10px] text-gray-400 font-bold uppercase tracking-widest justify-center italic">
+                    <ShieldCheck className="h-3 w-3" />
+                    Paiement à la livraison
                 </div>
             </div>
         </div>

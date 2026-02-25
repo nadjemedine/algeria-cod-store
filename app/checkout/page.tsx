@@ -10,10 +10,10 @@ export default async function CheckoutPage() {
     }
 
     return (
-        <div className="p-4 space-y-6 pb-24 md:pb-12 max-w-5xl mx-auto">
-            <div className="border-b pb-4">
-                <h1 className="text-3xl font-bold">Checkout</h1>
-                <p className="text-gray-500 mt-1">Complete your order details below. Payment is Cash on Delivery.</p>
+        <div className="p-6 space-y-8 pb-32 max-w-md mx-auto">
+            <div className="space-y-2">
+                <h1 className="text-3xl font-black text-gray-900">Finaliser la Commande</h1>
+                <p className="text-gray-400 text-sm font-medium leading-relaxed">Veuillez remplir vos informations ci-dessous. Le paiement se fait à la livraison.</p>
             </div>
 
             <CheckoutForm deliveryPrices={deliveryPrices} />

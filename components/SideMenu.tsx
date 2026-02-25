@@ -50,17 +50,17 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
 
             {/* Drawer */}
             <div
-                className={`fixed top-0 right-0 h-full w-72 md:w-80 bg-white z-50 transform transition-transform duration-500 ease-out shadow-2xl flex flex-col ${isOpen ? "translate-x-0" : "translate-x-full"
+                className={`fixed top-0 left-0 h-full w-72 md:w-80 bg-white z-50 transform transition-transform duration-500 ease-out shadow-2xl flex flex-col ${isOpen ? "translate-x-0" : "-translate-x-full"
                     }`}
-                dir="rtl"
+                dir="ltr"
             >
                 {/* Header */}
                 <div className="flex items-center justify-between p-5 border-b bg-primary/5">
                     <div className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">
-                            M
+                            C
                         </div>
-                        <span className="font-bold text-xl text-gray-900 tracking-tight">القائمة</span>
+                        <span className="font-bold text-xl text-gray-900 tracking-tight">Menu</span>
                     </div>
                     <button
                         onClick={() => setIsOpen(false)}
@@ -124,7 +124,7 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                                         )}
                                         <span className="text-[17px]">{item.title}</span>
                                     </div>
-                                    <ChevronRight className="h-5 w-5 text-gray-400 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all rotate-180" />
+                                    <ChevronRight className="h-5 w-5 text-gray-400 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all" />
                                 </Link>
                             );
                         })
@@ -133,13 +133,13 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                             <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
                                 <Menu className="h-6 w-6 text-gray-300" />
                             </div>
-                            <p className="text-gray-500 text-sm">لا توجد عناصر حالياً</p>
+                            <p className="text-gray-500 text-sm">Aucun élément pour le moment</p>
                             <Link
                                 href="/studio"
                                 className="text-xs text-primary hover:underline font-bold"
                                 onClick={() => setIsOpen(false)}
                             >
-                                أضف عناصر من لوحة التحكم
+                                Ajouter des éléments depuis le panneau
                             </Link>
                         </div>
                     )}

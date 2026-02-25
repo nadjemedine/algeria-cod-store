@@ -3,12 +3,13 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import BottomNav from '@/components/BottomNav';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Boutique Celinaa',
-  description: 'Modern mobile-first e-commerce store with COD in Algeria',
+  description: 'Boutique e-commerce moderne en Algérie',
 };
 
 export default function RootLayout({
@@ -17,13 +18,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ar" dir="rtl">
-      <body className={`${inter.className} bg-white pb-20 md:pb-0 min-h-screen text-black`}>
+    <html lang="fr" dir="ltr">
+      <body className={`${inter.className} bg-background pb-20 md:pb-0 min-h-screen text-foreground`}>
         <Header />
-        <main className="max-w-5xl mx-auto min-h-[calc(100vh-80px)] bg-white">
+        <main className="max-w-md mx-auto min-h-[calc(100vh-80px)]" id="main-content">
           {children}
         </main>
         <BottomNav />
+        <WhatsAppButton />
+        <div className="sr-only">
+          <a href="#main-content">Aller au contenu principal</a>
+        </div>
       </body>
     </html>
   );

@@ -1,68 +1,52 @@
 'use client';
-import { useState } from 'react';
 import { useCartStore } from '@/store/useCartStore';
 import { ShoppingBag } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
-export default function AddToCartButton({ product }: { product: any }) {
+export default function AddToCartButton({ product, selectedSize, quantity = 1 }: { product: any, selectedSize?: string, quantity?: number }) {
     const addItem = useCartStore((state) => state.addItem);
+    const router = useRouter();
 
-    // Filter sizes to only those with stock > 0
-    const availableSizes = product.sizes?.filter((s: any) => typeof s === 'object' ? s.stock > 0 : true) || [];
+    const hasSizes = product.sizes && product.sizes.length > 0;
+    const availableSizes = hasSizes ? product.sizes.filter((s: any) => typeof s === 'object' ? s.stock > 0 : true) : [];
 
-    // Default to the first available size string
-    const [selectedSize, setSelectedSize] = useState(
-        availableSizes.length > 0
-            ? (typeof availableSizes[0] === 'object' ? availableSizes[0].size : availableSizes[0])
-            : ''
-    );
+    const handleAction = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
 
-    const handleAdd = () => {
-        if (!selectedSize && availableSizes.length > 0) {
-            alert('Please select a size');
+        // If sizes exist and we haven't selected one, go to details
+        if (hasSizes && !selectedSize) {
+            router.push(`/product/${product._id}`);
             return;
         }
 
+        // Otherwise add to cart
         addItem({
             _id: product._id,
             name: product.name,
             price: product.price,
             image: product.image,
-            selectedSize,
+            selectedSize: selectedSize || '',
+            quantity: quantity,
         });
-        alert('Added to cart!');
+        alert(`${quantity} article${quantity > 1 ? 's' : ''} ajouté${quantity > 1 ? 's' : ''} au panier !`);
     };
 
-    if (availableSizes.length === 0) {
+    if (hasSizes && availableSizes.length === 0) {
         return (
-            <button disabled className="mt-2 w-full py-2 bg-gray-300 text-gray-500 cursor-not-allowed rounded-md font-medium text-sm">
-                Out of Stock
+            <button disabled className="mt-2 w-full py-3 bg-gray-50 text-gray-300 cursor-not-allowed rounded-2xl font-bold text-[10px] uppercase tracking-widest border border-gray-50">
+                Rupture de Stock
             </button>
         );
     }
 
     return (
-        <div className="flex flex-col space-y-2 mt-2">
-            {availableSizes.length > 0 && (
-                <select
-                    value={selectedSize}
-                    onChange={(e) => setSelectedSize(e.target.value)}
-                    className="border rounded px-2 py-1 text-sm bg-gray-50 text-black mb-1"
-                >
-                    {availableSizes.map((s: any) => {
-                        const sizeStr = typeof s === 'object' ? s.size : s;
-                        return (
-                            <option key={sizeStr} value={sizeStr}>{sizeStr}</option>
-                        );
-                    })}
-                </select>
-            )}
-            <button
-                onClick={handleAdd}
-                className="flex items-center justify-center space-x-2 bg-black text-white hover:bg-gray-800 transition py-2 rounded-md w-full font-medium shadow-sm transition-transform active:scale-95 text-sm"
-            >
-                <ShoppingBag className="h-4 w-4" />
-                <span>Add to Cart</span>
-            </button>
-        </div>
+        <button
+            onClick={handleAction}
+            className="flex items-center justify-center space-x-2 bg-primary text-white hover:opacity-90 transition-all py-3.5 rounded-2xl w-full font-black shadow-lg shadow-primary/20 active:scale-95 text-[11px] uppercase tracking-[0.1em]"
+        >
+            <ShoppingBag className="h-4 w-4" />
+            <span>{(selectedSize || !hasSizes) ? 'Ajouter au Panier' : 'Détails & Achat'}</span>
+        </button>
     );
 }
