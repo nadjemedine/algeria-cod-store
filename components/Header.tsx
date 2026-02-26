@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 
 export default function Header() {
     const [menuItems, setMenuItems] = useState([]);
-    
+
     useEffect(() => {
         const fetchMenuItems = async () => {
             try {
@@ -28,10 +28,10 @@ export default function Header() {
                 console.error("Failed to fetch menu items:", error);
             }
         };
-        
+
         fetchMenuItems();
     }, []);
-    
+
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -43,63 +43,64 @@ export default function Header() {
     };
 
     return (
-        <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 max-w-md mx-auto">
+        <header className="sticky top-0 z-50 w-full bg-[#a1a692] border-b border-secondary max-w-md mx-auto">
             <div className="relative flex h-16 items-center justify-between px-4">
-                {/* Left: Logo */}
-                <Link href="/" className="active:scale-95 transition-transform">
-                    <div className="relative h-12 w-32">
-                        <Image
-                            src="/logo.jpg"
-                            alt="Logo Boutique Celinaa"
-                            fill
-                            className="object-contain"
-                            priority
-                        />
-                    </div>
-                </Link>
+                {/* Left: Menu & Logo */}
+                <div className="flex items-center gap-3">
+                    <SideMenu menuItems={menuItems} />
+                    <Link href="/" className="active:scale-95 transition-transform">
+                        <div className="relative h-10 w-24">
+                            <Image
+                                src="/logo.jpg"
+                                alt="Logo IX Boutique"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
+                        </div>
+                    </Link>
+                </div>
 
-                {/* Right: Search, Cart & Menu */}
+                {/* Right: Cart & Search */}
                 <div className="flex items-center gap-2">
+                    <CartIcon />
+
                     {isSearchOpen ? (
-                        <form onSubmit={handleSearchSubmit} className="flex items-center gap-2 mr-2">
+                        <form onSubmit={handleSearchSubmit} className="flex items-center gap-1">
                             <input
                                 type="text"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                placeholder="Rechercher des produits..."
-                                className="px-3 py-1.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                                placeholder="Rechercher..."
+                                className="px-2 py-1 text-xs border border-gold rounded focus:outline-none focus:ring-1 focus:ring-gold"
                                 autoFocus
                                 aria-label="Champ de recherche"
                             />
-                            <button 
-                                type="button" 
+                            <button
+                                type="button"
                                 onClick={() => setIsSearchOpen(false)}
-                                className="p-1.5 text-gray-500 hover:text-gray-700"
+                                className="p-2 text-primary hover:opacity-80 transition-all duration-300 transform active:scale-75 active:-translate-y-1 focus:outline-none"
                                 aria-label="Fermer la recherche"
                             >
-                                <X className="h-4 w-4" />
+                                <X className="h-5 w-5" />
                             </button>
-                            <button 
-                                type="submit" 
-                                className="p-1.5 text-gray-500 hover:text-gray-700"
+                            <button
+                                type="submit"
+                                className="p-2 text-primary hover:opacity-80 transition-all duration-300 transform active:scale-75 active:-translate-y-1 focus:outline-none"
                                 aria-label="Rechercher"
                             >
-                                <Search className="h-4 w-4" />
+                                <Search className="h-5 w-5" />
                             </button>
                         </form>
                     ) : (
                         <button
-                            className="p-2 text-gray-700 hover:text-primary"
+                            className="p-2 transition-all duration-300 transform active:scale-75 active:-translate-y-1 focus:outline-none group"
                             onClick={() => setIsSearchOpen(true)}
                             aria-label="Ouvrir la recherche"
                         >
-                            <Search className="h-5 w-5" />
+                            <Search className="h-6 w-6 text-primary group-hover:text-primary transition-colors" />
                         </button>
                     )}
-
-                    <CartIcon />
-
-                    <SideMenu menuItems={menuItems} />
                 </div>
             </div>
         </header>

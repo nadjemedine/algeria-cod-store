@@ -35,10 +35,10 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
         <>
             <button
                 onClick={() => setIsOpen(true)}
-                className="p-2 transition-all hover:scale-110 active:scale-95 text-gray-700 hover:text-primary focus:outline-none"
+                className="p-2 transition-all duration-300 transform active:scale-75 active:-translate-y-1 focus:outline-none group"
                 aria-label="Open Menu"
             >
-                <Menu className="h-7 w-7" />
+                <Menu className="h-6 w-6 text-primary group-hover:text-primary transition-colors" />
             </button>
 
             {/* Overlay */}
@@ -58,13 +58,13 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                 <div className="flex items-center justify-between p-5 border-b bg-primary/5">
                     <div className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">
-                            C
+                            IX
                         </div>
                         <span className="font-bold text-xl text-gray-900 tracking-tight">Menu</span>
                     </div>
                     <button
                         onClick={() => setIsOpen(false)}
-                        className="p-2 text-gray-400 hover:text-primary hover:bg-primary/10 transition-all rounded-full"
+                        className="p-2 text-primary hover:text-primary hover:bg-primary/10 transition-all rounded-full"
                     >
                         <X className="h-6 w-6" />
                     </button>
@@ -146,12 +146,12 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                 </nav>
 
                 {/* Footer */}
-                <div className="p-6 bg-white border-t space-y-4">
+                <div className="p-6 bg-white space-y-4">
                     <div className="flex justify-center gap-4">
                         {/* Social placeholders if needed */}
                     </div>
                     <p className="text-center text-[10px] text-gray-400 uppercase tracking-widest font-bold">
-                        Boutique Celinaa © {new Date().getFullYear()}
+                        IX Boutique © {new Date().getFullYear()}
                     </p>
                 </div>
             </div>

@@ -5,7 +5,7 @@ export default function SearchPage({ searchParams }: { searchParams?: { q?: stri
   const query = searchParams?.q || '';
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-background min-h-screen">
       <div className="p-4">
         <h1 className="text-xl font-bold mb-4">
           Résultats pour "{query}"

@@ -1,22 +1,22 @@
 'use client';
 
-import { MessageCircle } from 'lucide-react';
+import { Radio } from 'lucide-react';
 
 export default function WhatsAppButton() {
     const phoneNumber = '213563413607'; // Algeria code + number
     const message = 'Bonjour, je souhaite avoir plus d\'informations sur vos produits.';
 
-    const handleClick = () => {
-        window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-    };
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
     return (
-        <button
-            onClick={handleClick}
-            className="fixed bottom-24 right-4 z-40 bg-[#25D366] text-white p-3 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all animate-bounce"
-            aria-label="Contact support on WhatsApp"
+        <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fixed bottom-24 right-4 z-40 bg-primary text-white p-2.5 rounded-none shadow-md hover:scale-110 active:scale-95 transition-all animate-bounce"
+            aria-label="Contactez-nous sur WhatsApp"
         >
-            <MessageCircle className="h-5 w-5 fill-current" />
-        </button>
+            <Radio className="w-5 h-5 fill-current rotate-90" />
+        </a>
     );
 }

@@ -3,13 +3,12 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import BottomNav from '@/components/BottomNav';
-import WhatsAppButton from '@/components/WhatsAppButton';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Boutique Celinaa',
-  description: 'Boutique e-commerce moderne en Algérie',
+  title: 'IX Boutique',
+  description: 'IX Boutique - Votre destination mode en Algérie',
 };
 
 export default function RootLayout({
@@ -25,7 +24,6 @@ export default function RootLayout({
           {children}
         </main>
         <BottomNav />
-        <WhatsAppButton />
         <div className="sr-only">
           <a href="#main-content">Aller au contenu principal</a>
         </div>

@@ -10,7 +10,7 @@ export default async function StorePage() {
   }
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-background min-h-screen">
       <ProductGrid products={products} />
     </div>
   );

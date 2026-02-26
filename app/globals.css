@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbfbfd;
-  /* Apple-like off-white */
+  --background: #eff2e6;
   --foreground: #1d1d1f;
-  /* Apple gray-black */
-  --color-primary: #F48BA9;
-  --color-primary-light: #fcd4db;
+  --color-primary: #7a7d6f;
+  --color-primary-light: #a1a692;
   --color-primary-foreground: #ffffff;
+  --color-gold: #b1ba95;
+  --color-accent: #a1a692;
+  --color-secondary: #b1ba95;
   color-scheme: light;
 }
 
@@ -16,8 +17,8 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--color-primary);
   --color-primary-foreground: var(--color-primary-foreground);
-  --radius-ios: 20px;
-  --radius-ios-lg: 32px;
+  --radius-ios: 0px;
+  --radius-ios-lg: 0px;
 }
 
 html,
@@ -31,6 +32,7 @@ body {
 
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -58,7 +60,7 @@ body {
 
 /* Improved button styles */
 .btn-ios {
-  @apply px-6 py-4 rounded-[18px] font-bold transition-all duration-300 active:scale-95 shadow-lg shadow-primary/20;
+  @apply px-4 py-2 rounded-none text-sm font-bold transition-all duration-300 active:scale-95 shadow-md shadow-primary/20;
   background-color: var(--color-primary);
   color: white;
 }
@@ -120,7 +122,7 @@ html {
 }
 
 .btn-ios {
-  @apply px-6 py-4 rounded-[18px] font-bold transition-all duration-300 active:scale-95 shadow-lg shadow-primary/20;
+  @apply px-4 py-2 rounded-none text-sm font-bold transition-all duration-300 active:scale-95 shadow-md shadow-primary/20;
   background-color: var(--color-primary);
   color: white;
 }
