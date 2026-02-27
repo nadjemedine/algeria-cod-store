@@ -6,7 +6,18 @@ export const metadata = {
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="fr" dir="ltr">
-            <body className="inter_5972bc34-module__OU16Qa__className bg-background pb-20 md:pb-0 min-h-screen text-foreground" style={{ margin: 0 }}>{children}</body>
+            <body 
+                style={{ 
+                    margin: 0, 
+                    padding: 0, 
+                    width: '100%', 
+                    height: '100%',
+                    overflow: 'hidden'
+                }}
+                suppressHydrationWarning={true}
+            >
+                {children}
+            </body>
         </html>
     )
 }

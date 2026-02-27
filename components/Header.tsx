@@ -51,10 +51,10 @@ export default function Header() {
                 </div>
 
                 {/* Center: Logo (absolutely centered) */}
-                <Link href="/" className="absolute left-1/2 -translate-x-1/2 active:scale-95 transition-transform flex items-stretch h-full">
-                    <div className="relative h-full w-28">
+                <Link href="/" className="absolute left-1/2 -translate-x-1/2 active:scale-95 transition-transform flex items-center justify-center h-full px-4">
+                    <div className="relative h-full max-w-[120px] flex items-center justify-center bg-transparent">
                         <Image
-                            src="/logo.svg"
+                            src="/logo.png"
                             alt="Logo Boutique Celinaa"
                             fill
                             className="object-contain object-center"
