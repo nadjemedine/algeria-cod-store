@@ -17,7 +17,7 @@ export default function CartIcon() {
     if (!mounted) {
         return (
             <div className="p-2">
-                <ShoppingCart className="h-6 w-6 text-primary" />
+                <ShoppingCart className="h-6 w-6 text-black" />
             </div>
         );
     }
@@ -25,10 +25,11 @@ export default function CartIcon() {
     return (
         <Link
             href="/cart"
-            className="relative p-2 transition-all duration-300 transform active:scale-75 active:-translate-y-1 flex items-center justify-center focus:outline-none group"
+            className="relative p-2 transition-all duration-300 transform active:scale-75 active:-translate-y-1 flex items-center justify-center focus:outline-none hover:scale-110 group"
             aria-label="View Cart"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
         >
-            <ShoppingCart className="h-6 w-6 text-primary group-hover:text-primary transition-colors" />
+            <ShoppingCart className="h-6 w-6 text-black transition-colors" />
             {cartItemsCount > 0 && (
                 <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-none bg-primary text-[9px] font-bold text-white shadow-sm border border-white">
                     {cartItemsCount}

@@ -37,8 +37,9 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                 onClick={() => setIsOpen(true)}
                 className="p-2 transition-all duration-300 transform active:scale-75 active:-translate-y-1 focus:outline-none group"
                 aria-label="Open Menu"
+                style={{ WebkitTapHighlightColor: 'transparent' }}
             >
-                <Menu className="h-6 w-6 text-primary group-hover:text-primary transition-colors" />
+                <Menu className="h-6 w-6 text-black transition-colors" />
             </button>
 
             {/* Overlay */}

@@ -43,64 +43,71 @@ export default function Header() {
     };
 
     return (
-        <header className="sticky top-0 z-50 w-full bg-[#a1a692] border-b border-secondary max-w-md mx-auto">
-            <div className="relative flex h-16 items-center justify-between px-4">
-                {/* Left: Menu & Logo */}
-                <div className="flex items-center gap-3">
+        <header className="sticky top-0 z-50 w-full bg-[#a1a692] border-b border-secondary max-w-md mx-auto overflow-hidden">
+            <div className="relative flex h-16 items-center">
+                {/* Left: Menu */}
+                <div className="flex items-center px-2 z-10">
                     <SideMenu menuItems={menuItems} />
-                    <Link href="/" className="active:scale-95 transition-transform">
-                        <div className="relative h-10 w-24">
-                            <Image
-                                src="/logo.jpg"
-                                alt="Logo IX Boutique"
-                                fill
-                                className="object-contain"
-                                priority
-                            />
-                        </div>
-                    </Link>
                 </div>
 
-                {/* Right: Cart & Search */}
-                <div className="flex items-center gap-2">
+                {/* Center: Logo (absolutely centered) */}
+                <Link href="/" className="absolute left-1/2 -translate-x-1/2 active:scale-95 transition-transform flex items-stretch h-full">
+                    <div className="relative h-full w-28">
+                        <Image
+                            src="/logo.svg"
+                            alt="Logo Boutique Celinaa"
+                            fill
+                            className="object-contain object-center"
+                            priority
+                        />
+                    </div>
+                </Link>
+
+                {/* Right: Cart & Search Toggle */}
+                <div className="flex items-center gap-2 px-3 ml-auto z-10">
                     <CartIcon />
 
-                    {isSearchOpen ? (
-                        <form onSubmit={handleSearchSubmit} className="flex items-center gap-1">
-                            <input
-                                type="text"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                placeholder="Rechercher..."
-                                className="px-2 py-1 text-xs border border-gold rounded focus:outline-none focus:ring-1 focus:ring-gold"
-                                autoFocus
-                                aria-label="Champ de recherche"
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setIsSearchOpen(false)}
-                                className="p-2 text-primary hover:opacity-80 transition-all duration-300 transform active:scale-75 active:-translate-y-1 focus:outline-none"
-                                aria-label="Fermer la recherche"
-                            >
-                                <X className="h-5 w-5" />
-                            </button>
-                            <button
-                                type="submit"
-                                className="p-2 text-primary hover:opacity-80 transition-all duration-300 transform active:scale-75 active:-translate-y-1 focus:outline-none"
-                                aria-label="Rechercher"
-                            >
-                                <Search className="h-5 w-5" />
-                            </button>
-                        </form>
-                    ) : (
+                    <button
+                        className="p-2 transition-all duration-300 transform active:scale-75 active:-translate-y-1 focus:outline-none hover:scale-110 group"
+                        onClick={() => setIsSearchOpen(!isSearchOpen)}
+                        aria-label={isSearchOpen ? "Fermer la recherche" : "Ouvrir la recherche"}
+                        style={{ WebkitTapHighlightColor: 'transparent' }}
+                    >
+                        {isSearchOpen ? (
+                            <X className="h-6 w-6 text-black transition-colors" />
+                        ) : (
+                            <Search className="h-6 w-6 text-black transition-colors" />
+                        )}
+                    </button>
+                </div>
+            </div>
+
+            {/* Expandable Search Bar Below Header */}
+            <div
+                className={`transition-all duration-300 ease-in-out overflow-hidden bg-[#a1a692] ${isSearchOpen
+                    ? 'max-h-20 opacity-100 border-t border-black/10'
+                    : 'max-h-0 opacity-0 border-t-0'
+                    }`}
+            >
+                <div className="p-3">
+                    <form onSubmit={handleSearchSubmit} className="relative flex items-center max-w-sm mx-auto">
+                        <input
+                            type="text"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            placeholder="Rechercher un produit..."
+                            className="w-full px-4 py-2 text-sm bg-white/80 border border-black/20 rounded-full focus:outline-none focus:ring-1 focus:ring-black/30 transition-all duration-200"
+                            autoFocus={isSearchOpen}
+                            aria-label="Champ de recherche"
+                        />
                         <button
-                            className="p-2 transition-all duration-300 transform active:scale-75 active:-translate-y-1 focus:outline-none group"
-                            onClick={() => setIsSearchOpen(true)}
-                            aria-label="Ouvrir la recherche"
+                            type="submit"
+                            className="absolute right-3 p-1 text-black hover:opacity-80 transition-all duration-300 transform active:scale-75 focus:outline-none"
+                            aria-label="Rechercher"
                         >
-                            <Search className="h-6 w-6 text-primary group-hover:text-primary transition-colors" />
+                            <Search className="h-5 w-5" />
                         </button>
-                    )}
+                    </form>
                 </div>
             </div>
         </header>

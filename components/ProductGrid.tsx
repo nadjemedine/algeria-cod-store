@@ -67,9 +67,17 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                                 )}
 
                                 {/* Cart Icon Top Right */}
-                                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-sm text-gray-700 transition-colors z-10 w-8 h-8 flex items-center justify-center">
-                                    <ShoppingBag className="w-4 h-4" />
-                                </div>
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleProductClick(product);
+                                    }}
+                                    className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-90"
+                                    aria-label={`Ajouter ${product.name} au panier`}
+                                    style={{ WebkitTapHighlightColor: 'transparent' }}
+                                >
+                                    <ShoppingBag className="w-5 h-5 text-black drop-shadow-sm" />
+                                </button>
 
                                 {/* Transparent overlay with name and price */}
                                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent p-3 pt-12">

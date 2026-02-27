@@ -7,8 +7,8 @@ import BottomNav from '@/components/BottomNav';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'IX Boutique',
-  description: 'IX Boutique - Votre destination mode en Algérie',
+  title: 'Boutique Celinaa',
+  description: 'Boutique Celinaa - Votre destination mode en Algérie',
 };
 
 export default function RootLayout({

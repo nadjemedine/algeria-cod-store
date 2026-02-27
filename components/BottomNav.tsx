@@ -24,27 +24,27 @@ export default function BottomNav() {
                 <Link
                     href="/"
                     style={{ WebkitTapHighlightColor: 'transparent' }}
-                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 transform active:scale-95 outline-none focus:outline-none focus-visible:outline-none ${isActive('/') ? 'opacity-100' : 'opacity-70'} text-primary`}
+                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 transform active:scale-95 outline-none focus:outline-none focus-visible:outline-none ${isActive('/') ? 'opacity-100' : 'opacity-70'} text-black`}
                 >
-                    <Store className={`h-5 w-5 ${isActive('/') ? 'stroke-[2px]' : 'stroke-[1.5px]'}`} />
-                    <span className={`text-[10px] font-bold`}>Boutique</span>
+                    <Store className={`h-5 w-5 text-black ${isActive('/') ? 'stroke-[2px]' : 'stroke-[1.5px]'}`} />
+                    <span className={`text-[10px] font-bold text-black`}>Boutique</span>
                 </Link>
 
                 {/* Checkout */}
                 <Link
                     href="/checkout"
                     style={{ WebkitTapHighlightColor: 'transparent' }}
-                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 transform active:scale-95 outline-none focus:outline-none focus-visible:outline-none ${isActive('/checkout') ? 'opacity-100' : 'opacity-70'} text-primary`}
+                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 transform active:scale-95 outline-none focus:outline-none focus-visible:outline-none ${isActive('/checkout') ? 'opacity-100' : 'opacity-70'} text-black`}
                 >
                     <div className="relative">
-                        <ShoppingBag className={`h-5 w-5 ${isActive('/checkout') ? 'stroke-[2px]' : 'stroke-[1.5px]'}`} />
+                        <ShoppingBag className={`h-5 w-5 text-black ${isActive('/checkout') ? 'stroke-[2px]' : 'stroke-[1.5px]'}`} />
                         {mounted && cartItemsCount > 0 && (
-                            <span className="absolute -top-1 -right-2 flex h-4 w-4 items-center justify-center rounded-none bg-primary text-[9px] font-black text-white shadow-none">
+                            <span className="absolute -top-1 -right-2 flex h-4 w-4 items-center justify-center rounded-none bg-black text-[9px] font-black text-white shadow-none">
                                 {cartItemsCount}
                             </span>
                         )}
                     </div>
-                    <span className={`text-[10px] font-bold`}>Paiement</span>
+                    <span className={`text-[10px] font-bold text-black`}>Paiement</span>
                 </Link>
             </div>
         </nav>

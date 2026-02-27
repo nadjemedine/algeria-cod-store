@@ -34,8 +34,8 @@ export default function CartPage() {
 
             <div className="space-y-4">
                 {items.map((item) => (
-                    <div key={`${item._id}-${item.selectedSize}`} className="flex flex-row bg-white rounded-[28px] shadow-sm border border-gray-50 p-4 gap-4 transition-all">
-                        <div className="relative w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 bg-gray-50 border border-gray-50">
+                    <div key={`${item._id}-${item.selectedSize}`} className="flex flex-row bg-white rounded-none overflow-hidden shadow-sm border border-gray-50 p-4 gap-4 transition-all">
+                        <div className="relative w-24 h-24 rounded-none overflow-hidden flex-shrink-0 bg-gray-50 border border-gray-50">
                             {item.image ? (
                                 <Image src={item.image} alt={item.name} fill className="object-cover" />
                             ) : (
@@ -60,7 +60,7 @@ export default function CartPage() {
                             <div className="flex justify-between items-center mt-3">
                                 <p className="font-black text-primary">{item.price.toLocaleString()} DA</p>
 
-                                <div className="flex items-center space-x-4 bg-gray-50 rounded-xl px-2 py-1.5 border border-gray-100">
+                                <div className="flex items-center space-x-4 bg-gray-50 rounded-none px-2 py-1.5 border border-gray-100">
                                     <button
                                         onClick={() => updateQuantity(item._id, item.selectedSize, -1)}
                                         className="p-1 hover:bg-white hover:shadow-sm rounded-lg transition-all active:scale-90 disabled:opacity-30"
@@ -86,7 +86,7 @@ export default function CartPage() {
                 ))}
             </div>
 
-            <div className="bg-white p-6 rounded-[32px] shadow-sm border border-gray-100 space-y-5">
+            <div className="bg-white p-6 rounded-none shadow-sm border border-gray-100 space-y-5">
                 <div className="flex justify-between items-center border-b border-gray-50 pb-3">
                     <span className="text-gray-400 font-bold text-sm uppercase tracking-wider">Sous-total</span>
                     <span className="font-black text-2xl text-gray-900">{totalPrice().toLocaleString()} DA</span>
@@ -96,7 +96,7 @@ export default function CartPage() {
                 </div>
 
                 <Link href="/checkout" className="block w-full">
-                    <button className="w-full bg-primary text-white py-5 rounded-[24px] font-black text-lg flex items-center justify-center space-x-3 hover:opacity-90 transition-all shadow-xl shadow-primary/20 active:scale-95">
+                    <button className="w-full bg-primary text-white py-5 rounded-none font-black text-lg flex items-center justify-center space-x-3 hover:opacity-90 transition-all shadow-xl shadow-primary/20 active:scale-95">
                         <span>Commander maintenant</span>
                         <ArrowRight className="h-6 w-6" />
                     </button>

@@ -42,12 +42,7 @@ body {
   }
 }
 
-/* Focus styles for better keyboard navigation */
-*:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
+
 
 /* Better contrast for accessibility */
 .text-foreground {
@@ -150,14 +145,4 @@ html {
 ::selection {
   background-color: var(--color-primary-light);
   color: var(--foreground);
-}
-
-/* Focus styles for better accessibility */
-a:focus,
-button:focus,
-input:focus,
-textarea:focus,
-select:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
 }
