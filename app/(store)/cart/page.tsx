@@ -17,7 +17,7 @@ export default function CartPage() {
                 </div>
                 <div className="space-y-2">
                     <h2 className="text-2xl font-black text-gray-800">Votre panier est vide</h2>
-                    <p className="text-gray-400 max-w-[280px] mx-auto text-sm font-medium">Il semblerait que vous n'ayez pas encore ajouté d'articles à votre panier IX Boutique.</p>
+                    <p className="text-gray-400 max-w-[280px] mx-auto text-sm font-medium">Il semblerait que vous n'ayez pas encore ajouté d'articles à votre panier Boutique Celinaa.</p>
                 </div>
                 <Link href="/" className="w-full max-w-[240px]">
                     <button className="w-full bg-primary text-white px-8 py-4 rounded-none font-black shadow-lg shadow-primary/20 active:scale-95 transition-all">
@@ -30,7 +30,7 @@ export default function CartPage() {
 
     return (
         <div className="p-6 space-y-8 pb-32 max-w-md mx-auto bg-background min-h-screen">
-            <h1 className="text-3xl font-black text-gray-900">Mon Panier - IX Boutique</h1>
+            <h1 className="text-3xl font-black text-gray-900">Mon Panier - Boutique Celinaa</h1>
 
             <div className="space-y-4">
                 {items.map((item) => (

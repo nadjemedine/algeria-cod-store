@@ -58,8 +58,8 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                 {/* Header */}
                 <div className="flex items-center justify-between p-5 border-b bg-primary/5">
                     <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">
-                            IX
+                        <div className="relative w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-transparent">
+                            <Image src="/icons/icon.png" alt="Icon" fill className="object-contain" />
                         </div>
                         <span className="font-bold text-xl text-gray-900 tracking-tight">Menu</span>
                     </div>
@@ -152,7 +152,7 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                         {/* Social placeholders if needed */}
                     </div>
                     <p className="text-center text-[10px] text-gray-400 uppercase tracking-widest font-bold">
-                        IX Boutique © {new Date().getFullYear()}
+                        Boutique Celinaa © {new Date().getFullYear()}
                     </p>
                 </div>
             </div>

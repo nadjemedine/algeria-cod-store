@@ -85,7 +85,7 @@ export async function POST(req: Request) {
                 ).join('');
 
                 await resend.emails.send({
-                    from: 'IX Boutique <onboarding@resend.dev>',
+                    from: 'Boutique Celinaa <onboarding@resend.dev>',
                     to: process.env.NOTIFICATION_EMAIL as string,
                     subject: `Nouvelle Commande Reçue ! (${data.totalPrice} DA)`,
                     html: `

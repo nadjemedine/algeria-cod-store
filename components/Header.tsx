@@ -51,13 +51,13 @@ export default function Header() {
                 </div>
 
                 {/* Center: Logo (absolutely centered) */}
-                <Link href="/" className="absolute left-1/2 -translate-x-1/2 active:scale-95 transition-transform flex items-center justify-center h-full px-4">
-                    <div className="relative h-full max-w-[120px] flex items-center justify-center bg-transparent">
+                <Link href="/" className="absolute left-1/2 -translate-x-1/2 active:scale-95 transition-transform flex items-center justify-center h-full w-[240px]">
+                    <div className="relative h-full w-full flex items-center justify-center bg-transparent">
                         <Image
                             src="/logo.png"
                             alt="Logo Boutique Celinaa"
                             fill
-                            className="object-contain object-center"
+                            className="object-contain object-center scale-[1.7]"
                             priority
                         />
                     </div>
