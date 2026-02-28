@@ -4,7 +4,8 @@ import Image from "next/image";
 import { productImageUrl } from "@/sanity/lib/image";
 import { useState } from "react";
 import ProductModal from "./ProductModal";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, Check } from "lucide-react";
+import { useCartStore } from "../store/useCartStore";
 
 interface Product {
     _id: string;
@@ -19,6 +20,8 @@ export default function ProductGrid({ products }: { products: Product[] }) {
     const [isLoading, setIsLoading] = useState(true);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const addItem = useCartStore((state) => state.addItem);
+    const [addedIds, setAddedIds] = useState<Set<string>>(new Set());
 
     if (products.length === 0) {
         return (
@@ -33,6 +36,26 @@ export default function ProductGrid({ products }: { products: Product[] }) {
         setIsModalOpen(true);
     };
 
+    const handleAddToCart = (e: React.MouseEvent, product: Product) => {
+        e.stopPropagation();
+        addItem({
+            _id: product._id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+        });
+
+        setAddedIds(prev => new Set(prev).add(product._id));
+        setTimeout(() => {
+            setAddedIds(prev => {
+                const next = new Set(prev);
+                next.delete(product._id);
+                return next;
+            });
+        }, 2000);
+    };
+
     return (
         <>
             <div className="p-4 grid grid-cols-2 gap-4 pb-24">
@@ -40,6 +63,7 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                     const imgUrl = product.image
                         ? productImageUrl(product.image, 600, 800)
                         : undefined;
+                    const isAdded = addedIds.has(product._id);
 
                     return (
                         <div
@@ -68,15 +92,17 @@ export default function ProductGrid({ products }: { products: Product[] }) {
 
                                 {/* Cart Icon Top Right */}
                                 <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleProductClick(product);
-                                    }}
-                                    className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-90"
+                                    onClick={(e) => handleAddToCart(e, product)}
+                                    className={`absolute top-2 right-2 z-10 w-9 h-9 flex items-center justify-center rounded-none transition-all duration-300 shadow-sm ${isAdded ? 'bg-green-600' : 'bg-primary/80 hover:bg-primary'
+                                        } active:scale-90`}
                                     aria-label={`Ajouter ${product.name} au panier`}
                                     style={{ WebkitTapHighlightColor: 'transparent' }}
                                 >
-                                    <ShoppingBag className="w-5 h-5 text-black drop-shadow-sm" />
+                                    {isAdded ? (
+                                        <Check className="w-5 h-5 text-white" />
+                                    ) : (
+                                        <ShoppingBag className="w-5 h-5 text-white" />
+                                    )}
                                 </button>
 
                                 {/* Transparent overlay with name and price */}
