@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import * as LucideIcons from "lucide-react";
-import { Menu, X, ChevronRight, ExternalLink } from "lucide-react";
+import { Menu, X, ChevronRight, ExternalLink, Instagram, Phone, Mail } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -51,21 +51,21 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
 
             {/* Drawer */}
             <div
-                className={`fixed top-0 left-0 h-full w-72 md:w-80 bg-white z-50 transform transition-transform duration-500 ease-out shadow-2xl flex flex-col ${isOpen ? "translate-x-0" : "-translate-x-full"
+                className={`fixed top-0 left-0 h-full w-72 md:w-80 bg-[#a1a692] z-50 transform transition-transform duration-500 ease-out shadow-2xl flex flex-col ${isOpen ? "translate-x-0" : "-translate-x-full"
                     }`}
                 dir="ltr"
             >
                 {/* Header */}
-                <div className="flex items-center justify-between p-5 border-b bg-primary/5">
+                <div className="flex items-center justify-between p-5 border-b border-black/10 bg-[#a1a692]">
                     <div className="flex items-center gap-2">
                         <div className="relative w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-transparent">
                             <Image src="/icons/icon.png" alt="Icon" fill className="object-contain" />
                         </div>
-                        <span className="font-bold text-xl text-gray-900 tracking-tight">Menu</span>
+                        <span className="font-bold text-xl text-black tracking-tight">Menu</span>
                     </div>
                     <button
                         onClick={() => setIsOpen(false)}
-                        className="p-2 text-primary hover:text-primary hover:bg-primary/10 transition-all rounded-full"
+                        className="p-2 text-black hover:bg-black/10 transition-all rounded-full"
                     >
                         <X className="h-6 w-6" />
                     </button>
@@ -101,11 +101,11 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                                     key={item._id}
                                     href={item.link || "#"}
                                     onClick={() => setIsOpen(false)}
-                                    className={`${baseStyles} text-gray-700 hover:text-primary hover:bg-primary/5 font-medium`}
+                                    className={`${baseStyles} text-black hover:bg-black/5 font-bold`}
                                 >
                                     <div className="flex items-center gap-4 flex-1">
                                         {item.iconName && (LucideIcons as any)[item.iconName] ? (
-                                            <div className="w-6 h-6 shrink-0 text-gray-400 group-hover:text-primary transition-colors">
+                                            <div className="w-6 h-6 shrink-0 text-black/70 group-hover:text-black transition-colors">
                                                 {(() => {
                                                     const Icon = (LucideIcons as any)[item.iconName];
                                                     return <Icon className="w-full h-full" />;
@@ -121,37 +121,48 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                                                 />
                                             </div>
                                         ) : (
-                                            <div className="w-2 h-2 rounded-full bg-gray-300 group-hover:bg-primary transition-colors" />
+                                            <div className="w-2 h-2 rounded-full bg-black/20 group-hover:bg-black transition-colors" />
                                         )}
                                         <span className="text-[17px]">{item.title}</span>
                                     </div>
-                                    <ChevronRight className="h-5 w-5 text-gray-400 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all" />
+                                    <ChevronRight className="h-5 w-5 text-black/50 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all" />
                                 </Link>
                             );
                         })
-                    ) : (
-                        <div className="flex flex-col items-center justify-center h-40 text-center space-y-3 px-6">
-                            <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
-                                <Menu className="h-6 w-6 text-gray-300" />
-                            </div>
-                            <p className="text-gray-500 text-sm">Aucun élément pour le moment</p>
-                            <Link
-                                href="/studio"
-                                className="text-xs text-primary hover:underline font-bold"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                Ajouter des éléments depuis le panneau
-                            </Link>
-                        </div>
-                    )}
+                    ) : null}
                 </nav>
 
                 {/* Footer */}
-                <div className="p-6 bg-white space-y-4">
-                    <div className="flex justify-center gap-4">
-                        {/* Social placeholders if needed */}
+                <div className="p-6 bg-[#a1a692] space-y-6 border-t border-black/10">
+                    <div className="space-y-4">
+                        <a
+                            href="https://www.instagram.com/boutique_celinaa"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3 text-black hover:opacity-70 transition-opacity font-bold"
+                        >
+                            <Instagram className="h-5 w-5" />
+                            <span>Instagram</span>
+                        </a>
+
+                        <a
+                            href="tel:0554830740"
+                            className="flex items-center gap-3 text-black hover:opacity-70 transition-opacity font-bold"
+                        >
+                            <Phone className="h-5 w-5" />
+                            <span>05 54830740</span>
+                        </a>
+
+                        <a
+                            href="mailto:celinamesbahi@gmail.com"
+                            className="flex items-center gap-3 text-black hover:opacity-70 transition-opacity font-bold"
+                        >
+                            <Mail className="h-5 w-5" />
+                            <span className="text-sm truncate">celinamesbahi@gmail.com</span>
+                        </a>
                     </div>
-                    <p className="text-center text-[10px] text-gray-400 uppercase tracking-widest font-bold">
+
+                    <p className="text-center text-[10px] text-black/60 uppercase tracking-widest font-bold pt-4">
                         Boutique Celinaa © {new Date().getFullYear()}
                     </p>
                 </div>
