@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #eff2e6;
-  --foreground: #1d1d1f;
-  --color-primary: #7a7d6f;
-  --color-primary-light: #a1a692;
+  --background: #f9f6f2;
+  --foreground: #1c1c1c;
+  --color-primary: #1c1c1c;
+  --color-primary-light: #2c2c2c;
   --color-primary-foreground: #ffffff;
-  --color-gold: #b1ba95;
-  --color-accent: #a1a692;
-  --color-secondary: #b1ba95;
+  --color-gold: #c5a059;
+  --color-accent: #c5a059;
+  --color-secondary: #e5e5e5;
   color-scheme: light;
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -109,6 +110,29 @@ html {
   animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+@keyframes marquee-rtl {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+.animate-marquee {
+  animation: marquee-rtl 15s linear infinite;
+}
+
+
+
+
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* iOS Glass Effect */
 .glass {
   background: rgba(255, 255, 255, 0.7) !important;
@@ -141,6 +165,11 @@ html {
   scrollbar-width: none;
 }
 
+
+
+.filter-gold {
+  filter: brightness(0) saturate(100%) invert(67%) sepia(21%) saturate(1005%) hue-rotate(1deg) brightness(97%) contrast(83%);
+}
 
 ::selection {
   background-color: var(--color-primary-light);

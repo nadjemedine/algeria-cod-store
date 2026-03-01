@@ -46,7 +46,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: a
     };
 
     return (
-        <div className="bg-white min-h-screen pb-40">
+        <div className="bg-background min-h-screen pb-40">
             {/* Header / Nav */}
             <div className="fixed top-0 left-0 right-0 z-50 p-4 flex justify-between items-center max-w-md mx-auto">
                 <button
@@ -185,7 +185,7 @@ export default function ProductDetail({ product, relatedProducts }: { product: a
                 )}
 
                 {/* Add to Cart Fixed Bottom Bar for Mobile-like feel */}
-                <div className="fixed bottom-12 left-0 right-0 p-3 bg-white border-t border-gray-100 w-full max-w-md mx-auto z-40" dir="ltr">
+                <div className="fixed bottom-12 left-0 right-0 p-3 bg-background border-t border-gray-100 w-full max-w-md mx-auto z-40" dir="ltr">
                     <div className="flex gap-3">
                         <div className="flex items-center bg-gray-50 border border-gray-200 rounded-none h-[54px] w-1/3 min-w-[110px] shadow-sm">
                             <button

@@ -1,5 +1,6 @@
 import Header from '@/components/Header';
 import BottomNav from '@/components/BottomNav';
+import Footer from '@/components/Footer';
 
 export default function StoreLayout({
   children,
@@ -12,6 +13,7 @@ export default function StoreLayout({
       <main className="max-w-md mx-auto min-h-[calc(100vh-80px)]" id="main-content">
         {children}
       </main>
+      <Footer />
       <BottomNav />
       <div className="sr-only">
         <a href="#main-content">Aller au contenu principal</a>

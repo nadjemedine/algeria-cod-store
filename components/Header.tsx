@@ -43,21 +43,41 @@ export default function Header() {
     };
 
     return (
-        <header className="sticky top-0 z-50 w-full bg-[#a1a692] border-b border-secondary max-w-md mx-auto overflow-hidden">
-            <div className="relative flex h-16 items-center">
+        <header className="sticky top-0 z-50 w-full max-w-md mx-auto overflow-hidden shadow-lg border-b border-black/10">
+            {/* Top Announcement Bar */}
+            <div className="w-full bg-[#1c1c1c] text-white py-2.5 relative overflow-hidden border-b border-white/10">
+                <div className="flex animate-marquee whitespace-nowrap items-center py-1">
+                    {[...Array(6)].map((_, i) => (
+
+
+                        <div key={i} className="flex shrink-0 items-center">
+                            <span className="mx-8 text-[11px] font-bold uppercase tracking-[0.2em]">Bienvenue a boutique celinaa</span>
+                            <span className="text-[#c5a059] font-black">•</span>
+                            <span className="mx-8 text-[11px] font-bold uppercase tracking-widest">livraison 58 willaya</span>
+                            <span className="text-[#c5a059] font-black">•</span>
+                            <span className="mx-8 text-[11px] font-bold uppercase tracking-widest">paiement a la livraison</span>
+                            <span className="text-[#c5a059] font-black">•</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+
+
+            <div className="relative flex h-16 items-center bg-[#1c1c1c]">
                 {/* Left: Menu */}
                 <div className="flex items-center px-2 z-10">
                     <SideMenu menuItems={menuItems} />
                 </div>
 
                 {/* Center: Logo (absolutely centered) */}
-                <Link href="/" className="absolute left-1/2 -translate-x-1/2 active:scale-95 transition-transform flex items-center justify-center h-full w-[240px]">
+                <Link href="/" className="absolute left-1/2 -translate-x-1/2 active:scale-95 transition-transform flex items-center justify-center h-full w-[200px]">
                     <div className="relative h-full w-full flex items-center justify-center bg-transparent">
                         <Image
                             src="/logo.png"
                             alt="Logo Boutique Celinaa"
                             fill
-                            className="object-contain object-center scale-[1.7]"
+                            className="object-contain object-center scale-[1.5] filter-gold"
                             priority
                         />
                     </div>
@@ -74,9 +94,9 @@ export default function Header() {
                         style={{ WebkitTapHighlightColor: 'transparent' }}
                     >
                         {isSearchOpen ? (
-                            <X className="h-6 w-6 text-black transition-colors" />
+                            <X className="h-6 w-6 text-[#c5a059] transition-colors" />
                         ) : (
-                            <Search className="h-6 w-6 text-black transition-colors" />
+                            <Search className="h-6 w-6 text-[#c5a059] transition-colors" />
                         )}
                     </button>
                 </div>
@@ -84,8 +104,8 @@ export default function Header() {
 
             {/* Expandable Search Bar Below Header */}
             <div
-                className={`transition-all duration-300 ease-in-out overflow-hidden bg-[#a1a692] ${isSearchOpen
-                    ? 'max-h-20 opacity-100 border-t border-black/10'
+                className={`transition-all duration-300 ease-in-out overflow-hidden bg-[#1c1c1c] ${isSearchOpen
+                    ? 'max-h-20 opacity-100 border-t border-white/10'
                     : 'max-h-0 opacity-0 border-t-0'
                     }`}
             >
@@ -96,16 +116,16 @@ export default function Header() {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="Rechercher un produit..."
-                            className="w-full px-4 py-2 text-sm bg-white/80 border border-black/20 rounded-full focus:outline-none focus:ring-1 focus:ring-black/30 transition-all duration-200"
+                            className="w-full px-4 py-2 text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/50 rounded-full focus:outline-none focus:ring-1 focus:ring-white/30 transition-all duration-200"
                             autoFocus={isSearchOpen}
                             aria-label="Champ de recherche"
                         />
                         <button
                             type="submit"
-                            className="absolute right-3 p-1 text-black hover:opacity-80 transition-all duration-300 transform active:scale-75 focus:outline-none"
+                            className="absolute right-3 p-1 text-white/50 hover:text-white transition-all duration-300 transform active:scale-75 focus:outline-none"
                             aria-label="Rechercher"
                         >
-                            <Search className="h-5 w-5" />
+                            <Search className="h-5 w-5 text-[#c5a059]" />
                         </button>
                     </form>
                 </div>

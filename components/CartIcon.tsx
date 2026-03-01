@@ -29,9 +29,10 @@ export default function CartIcon() {
             aria-label="View Cart"
             style={{ WebkitTapHighlightColor: 'transparent' }}
         >
-            <ShoppingCart className="h-6 w-6 text-black transition-colors" />
+            <ShoppingCart className="h-6 w-6 text-[#c5a059] transition-colors" />
+
             {cartItemsCount > 0 && (
-                <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-none bg-primary text-[9px] font-bold text-white shadow-sm border border-white">
+                <span className="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-none bg-[#c5a059] text-[9px] font-bold text-white shadow-sm border border-white">
                     {cartItemsCount}
                 </span>
             )}

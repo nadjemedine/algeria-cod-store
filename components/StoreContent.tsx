@@ -29,7 +29,7 @@ export default function StoreContent({ groups }: { groups: Group[] }) {
 
     if (selectedGroupId && selectedGroup) {
         return (
-            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 bg-white min-h-screen p-6">
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 bg-background min-h-screen p-6">
                 <div className="flex items-center justify-between mb-2">
                     <button
                         onClick={() => setSelectedGroupId(null)}
@@ -80,7 +80,7 @@ export default function StoreContent({ groups }: { groups: Group[] }) {
     }
 
     return (
-        <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 bg-white min-h-screen p-6">
+        <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 bg-background min-h-screen p-6">
             <div className="text-center space-y-2 pt-4">
                 <h2 className="text-3xl font-black text-gray-900 italic tracking-tight">Nos Collections</h2>
                 <div className="w-12 h-1 bg-primary mx-auto rounded-full" />

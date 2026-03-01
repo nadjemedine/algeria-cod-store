@@ -35,11 +35,13 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
         <>
             <button
                 onClick={() => setIsOpen(true)}
-                className="p-2 transition-all duration-300 transform active:scale-75 active:-translate-y-1 focus:outline-none group"
+                className="p-1.5 transition-all duration-300 transform active:scale-75 active:-translate-y-1 focus:outline-none group"
                 aria-label="Open Menu"
                 style={{ WebkitTapHighlightColor: 'transparent' }}
             >
-                <Menu className="h-6 w-6 text-black transition-colors" />
+                <div className="relative w-7 h-7">
+                    <Image src="/icons/icon.png" alt="Menu" fill className="object-contain filter-gold" />
+                </div>
             </button>
 
             {/* Overlay */}
@@ -51,21 +53,21 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
 
             {/* Drawer */}
             <div
-                className={`fixed top-0 left-0 h-full w-72 md:w-80 bg-[#a1a692] z-50 transform transition-transform duration-500 ease-out shadow-2xl flex flex-col ${isOpen ? "translate-x-0" : "-translate-x-full"
+                className={`fixed top-0 left-0 h-full w-72 md:w-80 bg-[#1c1c1c] z-50 transform transition-transform duration-500 ease-out shadow-2xl flex flex-col ${isOpen ? "translate-x-0" : "-translate-x-full"
                     }`}
                 dir="ltr"
             >
                 {/* Header */}
-                <div className="flex items-center justify-between p-5 border-b border-black/10 bg-[#a1a692]">
+                <div className="flex items-center justify-between p-5 border-b border-white/10 bg-[#1c1c1c]">
                     <div className="flex items-center gap-2">
                         <div className="relative w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-transparent">
-                            <Image src="/icons/icon.png" alt="Icon" fill className="object-contain" />
+                            <Image src="/icons/icon.png" alt="Icon" fill className="object-contain filter-gold" />
                         </div>
-                        <span className="font-bold text-xl text-black tracking-tight">Menu</span>
+                        <span className="font-bold text-xl text-white tracking-tight">Menu</span>
                     </div>
                     <button
                         onClick={() => setIsOpen(false)}
-                        className="p-2 text-black hover:bg-black/10 transition-all rounded-full"
+                        className="p-2 text-white hover:bg-white/10 transition-all rounded-full"
                     >
                         <X className="h-6 w-6" />
                     </button>
@@ -101,14 +103,14 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                                     key={item._id}
                                     href={item.link || "#"}
                                     onClick={() => setIsOpen(false)}
-                                    className={`${baseStyles} text-black hover:bg-black/5 font-bold`}
+                                    className={`${baseStyles} text-white/90 hover:bg-white/5 font-bold hover:text-white`}
                                 >
                                     <div className="flex items-center gap-4 flex-1">
                                         {item.iconName && (LucideIcons as any)[item.iconName] ? (
-                                            <div className="w-6 h-6 shrink-0 text-black/70 group-hover:text-black transition-colors">
+                                            <div className="w-6 h-6 shrink-0 text-white/50 group-hover:text-white transition-colors">
                                                 {(() => {
                                                     const Icon = (LucideIcons as any)[item.iconName];
-                                                    return <Icon className="w-full h-full" />;
+                                                    return <Icon className="w-full h-full text-[#c5a059]" />;
                                                 })()}
                                             </div>
                                         ) : item.iconUrl ? (
@@ -117,55 +119,21 @@ export default function SideMenu({ menuItems }: { menuItems: MenuItem[] }) {
                                                     src={item.iconUrl}
                                                     alt={item.title}
                                                     fill
-                                                    className="object-contain"
+                                                    className="object-contain filter-gold"
                                                 />
                                             </div>
                                         ) : (
-                                            <div className="w-2 h-2 rounded-full bg-black/20 group-hover:bg-black transition-colors" />
+                                            <div className="w-2 h-2 rounded-full bg-white/20 group-hover:bg-white transition-colors" />
                                         )}
                                         <span className="text-[17px]">{item.title}</span>
                                     </div>
-                                    <ChevronRight className="h-5 w-5 text-black/50 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all" />
+                                    <ChevronRight className="h-5 w-5 text-white/30 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all" />
                                 </Link>
                             );
                         })
                     ) : null}
                 </nav>
 
-                {/* Footer */}
-                <div className="p-6 bg-[#a1a692] space-y-6 border-t border-black/10">
-                    <div className="space-y-4">
-                        <a
-                            href="https://www.instagram.com/boutique_celinaa"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-3 text-black hover:opacity-70 transition-opacity font-bold"
-                        >
-                            <Instagram className="h-5 w-5" />
-                            <span>Instagram</span>
-                        </a>
-
-                        <a
-                            href="tel:0554830740"
-                            className="flex items-center gap-3 text-black hover:opacity-70 transition-opacity font-bold"
-                        >
-                            <Phone className="h-5 w-5" />
-                            <span>05 54830740</span>
-                        </a>
-
-                        <a
-                            href="mailto:celinamesbahi@gmail.com"
-                            className="flex items-center gap-3 text-black hover:opacity-70 transition-opacity font-bold"
-                        >
-                            <Mail className="h-5 w-5" />
-                            <span className="text-sm truncate">celinamesbahi@gmail.com</span>
-                        </a>
-                    </div>
-
-                    <p className="text-center text-[10px] text-black/60 uppercase tracking-widest font-bold pt-4">
-                        Boutique Celinaa © {new Date().getFullYear()}
-                    </p>
-                </div>
             </div>
         </>
     );

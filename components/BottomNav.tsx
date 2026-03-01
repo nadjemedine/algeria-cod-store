@@ -18,33 +18,33 @@ export default function BottomNav() {
     const isActive = (path: string) => pathname === path || (path === '/' && pathname.startsWith('/product'));
 
     return (
-        <nav className="fixed bottom-0 left-0 right-0 z-[100] bg-[#a1a692] shadow-none border-t-0 md:hidden w-full">
-            <div className="flex h-12 items-center justify-around px-4">
+        <nav className="fixed bottom-0 left-0 right-0 z-[100] bg-[#1c1c1c] shadow-none border-t border-white/10 md:hidden w-full">
+            <div className="flex h-14 items-center justify-around px-4">
                 {/* Store */}
                 <Link
                     href="/"
                     style={{ WebkitTapHighlightColor: 'transparent' }}
-                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 transform active:scale-95 outline-none focus:outline-none focus-visible:outline-none ${isActive('/') ? 'opacity-100' : 'opacity-70'} text-black`}
+                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 transform active:scale-95 outline-none focus:outline-none focus-visible:outline-none ${isActive('/') ? 'opacity-100' : 'opacity-60 hover:opacity-100'} text-white`}
                 >
-                    <Store className={`h-5 w-5 text-black ${isActive('/') ? 'stroke-[2px]' : 'stroke-[1.5px]'}`} />
-                    <span className={`text-[10px] font-bold text-black`}>Boutique</span>
+                    <Store className={`h-5 w-5 text-white ${isActive('/') ? 'stroke-[2px] text-[#c5a059]' : 'stroke-[1.5px]'}`} />
+                    <span className={`text-[10px] font-bold ${isActive('/') ? 'text-[#c5a059]' : 'text-white'}`}>Boutique</span>
                 </Link>
 
                 {/* Checkout */}
                 <Link
                     href="/checkout"
                     style={{ WebkitTapHighlightColor: 'transparent' }}
-                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 transform active:scale-95 outline-none focus:outline-none focus-visible:outline-none ${isActive('/checkout') ? 'opacity-100' : 'opacity-70'} text-black`}
+                    className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 transform active:scale-95 outline-none focus:outline-none focus-visible:outline-none ${isActive('/checkout') ? 'opacity-100' : 'opacity-60 hover:opacity-100'} text-white`}
                 >
                     <div className="relative">
-                        <ShoppingBag className={`h-5 w-5 text-black ${isActive('/checkout') ? 'stroke-[2px]' : 'stroke-[1.5px]'}`} />
+                        <ShoppingBag className={`h-5 w-5 text-white ${isActive('/checkout') ? 'stroke-[2px] text-[#c5a059]' : 'stroke-[1.5px]'}`} />
                         {mounted && cartItemsCount > 0 && (
-                            <span className="absolute -top-1 -right-2 flex h-4 w-4 items-center justify-center rounded-none bg-black text-[9px] font-black text-white shadow-none">
+                            <span className="absolute -top-1 -right-2 flex h-4 w-4 items-center justify-center rounded-none bg-[#c5a059] text-[9px] font-black text-white shadow-none">
                                 {cartItemsCount}
                             </span>
                         )}
                     </div>
-                    <span className={`text-[10px] font-bold text-black`}>Paiement</span>
+                    <span className={`text-[10px] font-bold ${isActive('/checkout') ? 'text-[#c5a059]' : 'text-white'}`}>Paiement</span>
                 </Link>
             </div>
         </nav>
