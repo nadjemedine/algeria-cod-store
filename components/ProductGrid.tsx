@@ -111,7 +111,7 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                                         <h3 className="font-bold text-white text-[13px] leading-tight flex-1">
                                             <span title={product.name}>{product.name}</span>
                                         </h3>
-                                        <div className="font-black text-white text-xs whitespace-nowrap bg-primary/80 px-2 py-1 flex items-center justify-center">
+                                        <div className="font-black text-[#1c1c1c] text-xs whitespace-nowrap bg-background/90 backdrop-blur-sm px-2 py-1 flex items-center justify-center border border-[#1c1c1c]/10">
                                             {product.price.toLocaleString()} DA
                                         </div>
                                     </div>

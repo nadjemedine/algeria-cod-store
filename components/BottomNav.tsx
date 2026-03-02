@@ -18,7 +18,7 @@ export default function BottomNav() {
     const isActive = (path: string) => pathname === path || (path === '/' && pathname.startsWith('/product'));
 
     return (
-        <nav className="fixed bottom-0 left-0 right-0 z-[100] bg-[#1c1c1c] shadow-none border-t border-white/10 md:hidden w-full">
+        <nav className="fixed bottom-0 left-0 right-0 z-[100] bg-[#1c1c1c] shadow-none border-t border-[#c5a059]/60 md:hidden w-full pb-[env(safe-area-inset-bottom)]">
             <div className="flex h-14 items-center justify-around px-4">
                 {/* Store */}
                 <Link

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Instagram, Phone, Mail } from 'lucide-react';
 import { client } from '../sanity/lib/client';
 
@@ -36,19 +37,38 @@ export default function Footer() {
     const copyright = data?.copyright || `Boutique Celinaa © ${new Date().getFullYear()}`;
     const footerPadding = data?.footerSize || 24;
     const fontSize = data?.fontSize || 12;
-    const bgColor = data?.backgroundColor || "#1c1c1c";
+    const bgColor = "#1c1c1c"; // Force dark background to eliminate white gaps
 
     return (
         <footer
-            className="w-full max-w-md mx-auto border-t border-white/10"
+            className="w-full border-t border-[#c5a059]/30"
             style={{
                 backgroundColor: bgColor,
                 paddingTop: `${footerPadding}px`,
-                paddingBottom: `${footerPadding}px`,
+                paddingBottom: `64px`, // Fixed padding to ensure footer background fills the area behind BottomNav
             }}
         >
-            <div className="px-6 space-y-6">
-                <div className="flex flex-col items-center gap-4">
+            <div className="px-6 space-y-8">
+                <div className="flex flex-col items-center text-center space-y-4">
+                    <div className="relative w-20 h-20 filter-gold">
+                        <Image
+                            src="/icon.png"
+                            alt="Logo Boutique Celinaa"
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <h2 className="text-xl font-black text-[#c5a059] uppercase tracking-widest">
+                            Boutique Celinaa
+                        </h2>
+                        <p className="text-white/60 text-xs max-w-[250px] mx-auto leading-relaxed">
+                            Votre destination de mode élégante en Algérie. Livraison 58 wilayas et paiement à la livraison.
+                        </p>
+                    </div>
+                </div>
+
+                <div className="flex flex-col items-center gap-6">
                     <div className="flex gap-8">
                         <a
                             href={instagram}

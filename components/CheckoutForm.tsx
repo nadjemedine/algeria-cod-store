@@ -39,7 +39,7 @@ export default function CheckoutForm() {
                 <h2 className="text-xl font-bold text-gray-800">Votre panier est vide</h2>
                 <button
                     onClick={() => router.push('/')}
-                    className="mt-6 px-6 py-2 bg-primary text-white rounded-none font-bold shadow-md shadow-primary/20 active:scale-95 transition-all text-sm"
+                    className="mt-6 px-6 py-2 bg-[#1c1c1c] text-[#c5a059] border border-[#c5a059]/20 rounded-none font-bold shadow-md shadow-black/20 active:scale-95 transition-all text-sm uppercase tracking-widest"
                 >
                     Continuer vos achats
                 </button>
@@ -125,7 +125,7 @@ export default function CheckoutForm() {
 
     return (
         <div className="flex flex-col pb-12 w-full">
-            <div className="bg-white p-4 md:p-8 rounded-none border-y border-gray-100 w-full">
+            <div className="bg-background p-4 md:p-8 rounded-none border-y border-[#c5a059]/10 w-full">
                 <h2 className="text-xl font-bold mb-8 flex items-center gap-3 text-gray-800">
                     <Truck className="h-6 w-6 text-primary" />
                     Informations de Livraison
@@ -222,17 +222,17 @@ export default function CheckoutForm() {
                     <div className="space-y-3 pt-2">
                         <label className="text-sm font-bold text-gray-600 ml-1">Type de livraison</label>
                         <div className={`grid gap-3 ${hasOfficeDelivery ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                            <label className={`cursor-pointer flex items-center justify-center p-4 transition-all duration-300 border-b-2 ${deliveryType === 'home' ? 'border-primary text-primary bg-primary/5' : 'border-transparent text-gray-400 hover:text-gray-600 bg-gray-50/50'}`}>
+                            <label className={`cursor-pointer flex items-center justify-center p-4 transition-all duration-300 border-2 rounded-none ${deliveryType === 'home' ? 'bg-[#1c1c1c] border-[#c5a059] text-[#c5a059]' : 'bg-white/50 border-gray-100 text-gray-400 hover:text-gray-600'}`}>
                                 <input type="radio" className="sr-only" name="deliveryType" value="home" checked={deliveryType === 'home'} onChange={() => setDeliveryType('home')} />
-                                <MapPin className={`h-5 w-5 mr-2 ${deliveryType === 'home' ? 'text-primary' : 'text-gray-300'}`} />
-                                <span className={`text-sm font-bold ${deliveryType === 'home' ? 'text-primary' : 'text-gray-500'}`}>Domicile</span>
+                                <MapPin className={`h-5 w-5 mr-2 ${deliveryType === 'home' ? 'text-[#c5a059]' : 'text-gray-300'}`} />
+                                <span className={`text-sm font-bold ${deliveryType === 'home' ? 'text-[#c5a059]' : 'text-gray-500'}`}>Domicile</span>
                             </label>
 
                             {hasOfficeDelivery && (
-                                <label className={`cursor-pointer flex items-center justify-center p-4 transition-all duration-300 border-b-2 ${deliveryType === 'office' ? 'border-primary text-primary bg-primary/5' : 'border-transparent text-gray-400 hover:text-gray-600 bg-gray-50/50'}`}>
+                                <label className={`cursor-pointer flex items-center justify-center p-4 transition-all duration-300 border-2 rounded-none ${deliveryType === 'office' ? 'bg-[#1c1c1c] border-[#c5a059] text-[#c5a059]' : 'bg-white/50 border-gray-100 text-gray-400 hover:text-gray-600'}`}>
                                     <input type="radio" className="sr-only" name="deliveryType" value="office" checked={deliveryType === 'office'} onChange={() => setDeliveryType('office')} />
-                                    <Building className={`h-5 w-5 mr-2 ${deliveryType === 'office' ? 'text-primary' : 'text-gray-300'}`} />
-                                    <span className={`text-sm font-bold ${deliveryType === 'office' ? 'text-primary' : 'text-gray-500'}`}>Bureau</span>
+                                    <Building className={`h-5 w-5 mr-2 ${deliveryType === 'office' ? 'text-[#c5a059]' : 'text-gray-300'}`} />
+                                    <span className={`text-sm font-bold ${deliveryType === 'office' ? 'text-[#c5a059]' : 'text-gray-500'}`}>Bureau</span>
                                 </label>
                             )}
                         </div>
@@ -275,9 +275,9 @@ export default function CheckoutForm() {
                                 <span>Livraison {wilaya ? `(${wilaya})` : ''}</span>
                                 <span>{wilaya ? (deliveryPrice ? `${deliveryPrice.toLocaleString()} DA` : 'Gratuite') : 'Calculée ensuite'}</span>
                             </div>
-                            <div className="flex justify-between font-black text-2xl pt-4 border-t border-gray-50 text-gray-900">
+                            <div className="flex justify-between font-black text-2xl pt-4 border-t border-gray-100 text-[#1c1c1c]">
                                 <span>Total</span>
-                                <span className="text-primary">{total.toLocaleString()} DA</span>
+                                <span className="text-[#1c1c1c]">{total.toLocaleString()} DA</span>
                             </div>
                         </div>
 
@@ -287,7 +287,7 @@ export default function CheckoutForm() {
                         </div>
                     </div>
 
-                    <button type="submit" disabled={isSubmitting} className="w-full bg-primary text-white py-4 px-4 rounded-none font-black text-base flex items-center justify-center mt-6 hover:opacity-90 shadow-none transition-all active:scale-95 disabled:bg-gray-200 disabled:shadow-none disabled:cursor-not-allowed">
+                    <button type="submit" disabled={isSubmitting} className="w-full bg-[#1c1c1c] text-[#c5a059] border border-[#c5a059]/30 py-4 px-4 rounded-none font-black text-base flex items-center justify-center mt-6 hover:bg-[#2a2a2a] shadow-md shadow-black/10 transition-all active:scale-95 disabled:bg-gray-200 disabled:shadow-none disabled:cursor-not-allowed uppercase tracking-[0.1em]">
                         {isSubmitting ? 'Traitement...' : `Confirmer la Commande - ${total.toLocaleString()} DA`}
                     </button>
                 </form>

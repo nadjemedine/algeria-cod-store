@@ -88,7 +88,7 @@ export default function ProductModal({
   return (
     <div className="fixed inset-0 z-[110] bg-black/60 flex items-end justify-center sm:items-center transition-opacity duration-300 animate-fade-in backdrop-blur-sm">
       <div
-        className="bg-white w-full max-w-md max-h-[92vh] sm:h-auto overflow-y-auto sm:rounded-none rounded-t-[30px] relative flex flex-col transition-transform duration-300 ease-out shadow-2xl"
+        className="bg-background w-full max-w-md max-h-[92vh] sm:h-auto overflow-y-auto sm:rounded-none rounded-t-[30px] relative flex flex-col transition-transform duration-300 ease-out shadow-2xl"
       >
 
         {/* Close Button top right */}
@@ -143,7 +143,7 @@ export default function ProductModal({
             )}
           </div>
 
-          <div className="p-6 flex flex-col gap-6 bg-white min-h-[300px]">
+          <div className="p-6 flex flex-col gap-6 bg-background min-h-[300px]">
             {/* Title Centered */}
             <div className="w-full text-center">
               <h1 className="text-[26px] font-black text-gray-900 leading-[1.1]">{product.name}</h1>
@@ -153,7 +153,7 @@ export default function ProductModal({
             <div className="flex flex-col gap-6" dir="ltr">
               {/* Price */}
               <div className="flex flex-col">
-                <span className="text-2xl font-black text-primary bg-primary/5 inline-block w-max px-3 py-1 border border-primary/10">
+                <span className="text-2xl font-black text-[#1c1c1c] border-b-2 border-[#c5a059]/30 inline-block px-1 py-1">
                   {product.price?.toLocaleString()} DA
                 </span>
               </div>
@@ -171,8 +171,8 @@ export default function ProductModal({
                           key={sizeStr}
                           onClick={() => setSelectedSize(sizeStr)}
                           className={`px-4 py-1.5 border-2 rounded-none font-bold text-[13px] transition-all outline-none focus:outline-none active:scale-95 ${isSelected
-                            ? "bg-primary border-primary text-white shadow-md shadow-primary/20 scale-105"
-                            : "bg-gray-50 border-gray-100 text-gray-700 hover:border-primary/50"
+                            ? "bg-[#1c1c1c] border-[#c5a059] text-[#c5a059] shadow-md shadow-black/20 scale-105"
+                            : "bg-[#1c1c1c] border-[#1c1c1c] text-white/70 hover:border-[#c5a059]/50"
                             }`}
                         >
                           <span className="flex items-center gap-1.5 focus:outline-none">
@@ -198,7 +198,7 @@ export default function ProductModal({
             <div className="h-6" />
 
             {/* Fixed Bottom Action Bar: Quantity & Button on ONE Line */}
-            <div className="sticky bottom-0 bg-white pt-4 pb-6 border-t border-gray-100 flex items-center justify-between gap-3 shrink-0">
+            <div className="sticky bottom-0 bg-background pt-4 pb-6 border-t border-[#c5a059]/10 flex items-center justify-between gap-3 shrink-0">
 
               {/* Quantity Selector */}
               <div className="flex items-center bg-gray-50 border border-gray-200 rounded-none h-[54px] w-1/3 min-w-[110px] shadow-sm">
@@ -223,13 +223,13 @@ export default function ProductModal({
               <button
                 onClick={handleAddToCart}
                 disabled={availableSizes.length === 0}
-                className={`flex-1 flex items-center justify-center gap-2 h-[54px] rounded-none font-black text-white transition-all shadow-md active:scale-95 outline-none focus:outline-none ${availableSizes.length === 0
-                  ? "bg-gray-300 cursor-not-allowed shadow-none text-gray-500"
-                  : "bg-primary hover:opacity-90 shadow-primary/20 text-lg"
+                className={`flex-1 flex items-center justify-center gap-2 h-[54px] rounded-none font-black transition-all shadow-md active:scale-95 outline-none focus:outline-none ${availableSizes.length === 0
+                  ? "bg-gray-200 cursor-not-allowed shadow-none text-gray-400"
+                  : "bg-[#1c1c1c] text-[#c5a059] border border-[#c5a059]/30 hover:bg-[#2a2a2a] shadow-black/20 text-lg uppercase tracking-widest"
                   }`}
               >
                 <ShoppingBag className="h-6 w-6" />
-                <span>{availableSizes.length === 0 ? "Épuisé" : "Ajouté au panier"}</span>
+                <span>{availableSizes.length === 0 ? "Épuisé" : "Ajouter au panier"}</span>
               </button>
             </div>
 

@@ -34,7 +34,7 @@ export default function AddToCartButton({ product, selectedSize, quantity = 1 }:
 
     if (hasSizes && availableSizes.length === 0) {
         return (
-            <button disabled className="mt-2 w-full py-2 bg-gray-50 text-gray-300 cursor-not-allowed rounded-none font-bold text-[10px] uppercase tracking-widest border border-gray-50">
+            <button disabled className="mt-2 w-full py-2 bg-[#1c1c1c]/10 text-gray-400 cursor-not-allowed rounded-none font-bold text-[10px] uppercase tracking-widest border border-gray-100">
                 Rupture de Stock
             </button>
         );
@@ -43,7 +43,7 @@ export default function AddToCartButton({ product, selectedSize, quantity = 1 }:
     return (
         <button
             onClick={handleAction}
-            className="flex items-center justify-center space-x-2 bg-primary text-white hover:opacity-90 transition-all py-2 rounded-none w-full font-black shadow-md shadow-primary/20 active:scale-95 text-[10px] uppercase tracking-[0.1em]"
+            className="flex items-center justify-center space-x-2 bg-[#1c1c1c] text-[#c5a059] border border-[#c5a059]/20 hover:bg-[#2a2a2a] transition-all py-2 rounded-none w-full font-black shadow-md shadow-primary/20 active:scale-95 text-[10px] uppercase tracking-[0.1em]"
         >
             <ShoppingBag className="h-4 w-4" />
             <span>{(selectedSize || !hasSizes) ? 'Ajouter' : 'Détails'}</span>

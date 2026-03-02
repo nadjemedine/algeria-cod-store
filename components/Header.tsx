@@ -45,20 +45,16 @@ export default function Header() {
     return (
         <header className="sticky top-0 z-50 w-full max-w-md mx-auto overflow-hidden shadow-lg border-b border-black/10">
             {/* Top Announcement Bar */}
-            <div className="w-full bg-[#1c1c1c] text-white py-2.5 relative overflow-hidden border-b border-white/10">
-                <div className="flex animate-marquee whitespace-nowrap items-center py-1">
-                    {[...Array(6)].map((_, i) => (
-
-
-                        <div key={i} className="flex shrink-0 items-center">
-                            <span className="mx-8 text-[11px] font-bold uppercase tracking-[0.2em]">Bienvenue a boutique celinaa</span>
-                            <span className="text-[#c5a059] font-black">•</span>
-                            <span className="mx-8 text-[11px] font-bold uppercase tracking-widest">livraison 58 willaya</span>
-                            <span className="text-[#c5a059] font-black">•</span>
-                            <span className="mx-8 text-[11px] font-bold uppercase tracking-widest">paiement a la livraison</span>
-                            <span className="text-[#c5a059] font-black">•</span>
-                        </div>
-                    ))}
+            <div className="w-full bg-[#1c1c1c] text-white overflow-hidden">
+                <div className="announcement-bar">
+                    <div className="announcement-content">
+                        <span>Bienvenue a boutique celinaa &nbsp;&nbsp;&nbsp;&nbsp; livraison 58 willaya &nbsp;&nbsp;&nbsp;&nbsp; paiement a la livraison &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>Bienvenue a boutique celinaa &nbsp;&nbsp;&nbsp;&nbsp; livraison 58 willaya &nbsp;&nbsp;&nbsp;&nbsp; paiement a la livraison &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>Bienvenue a boutique celinaa &nbsp;&nbsp;&nbsp;&nbsp; livraison 58 willaya &nbsp;&nbsp;&nbsp;&nbsp; paiement a la livraison &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>Bienvenue a boutique celinaa &nbsp;&nbsp;&nbsp;&nbsp; livraison 58 willaya &nbsp;&nbsp;&nbsp;&nbsp; paiement a la livraison &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>Bienvenue a boutique celinaa &nbsp;&nbsp;&nbsp;&nbsp; livraison 58 willaya &nbsp;&nbsp;&nbsp;&nbsp; paiement a la livraison &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <span>Bienvenue a boutique celinaa &nbsp;&nbsp;&nbsp;&nbsp; livraison 58 willaya &nbsp;&nbsp;&nbsp;&nbsp; paiement a la livraison &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    </div>
                 </div>
             </div>
 

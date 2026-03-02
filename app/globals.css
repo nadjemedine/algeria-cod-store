@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f9f6f2;
+  --background: #f8f2e1;
+  /* Attractive Cream Beige */
   --foreground: #1c1c1c;
-  --color-primary: #1c1c1c;
-  --color-primary-light: #2c2c2c;
+  --color-primary: #c5a059;
+  --color-primary-light: #d4b16a;
   --color-primary-foreground: #ffffff;
   --color-gold: #c5a059;
   --color-accent: #c5a059;
@@ -41,6 +42,12 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  /* Keep marquee moving even if reduced motion is requested, but slower */
+  .announcement-content {
+    animation-duration: 60s !important;
+    animation-iteration-count: infinite !important;
+  }
 }
 
 
@@ -56,14 +63,15 @@ body {
 
 /* Improved button styles */
 .btn-ios {
-  @apply px-4 py-2 rounded-none text-sm font-bold transition-all duration-300 active:scale-95 shadow-md shadow-primary/20;
-  background-color: var(--color-primary);
-  color: white;
+  @apply px-4 py-2 rounded-none text-sm font-black transition-all duration-300 active:scale-95 shadow-md shadow-black/20;
+  background-color: #1c1c1c;
+  color: #c5a059;
+  border: 1px solid rgba(197, 160, 89, 0.2);
 }
 
 .btn-ios:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
+  background-color: #2a2a2a;
+  transform: translateY(-1px);
 }
 
 /* Responsive adjustments */
@@ -110,7 +118,8 @@ html {
   animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes marquee-rtl {
+/* Marquee Animation */
+@keyframes marquee {
   0% {
     transform: translateX(0);
   }
@@ -120,18 +129,38 @@ html {
   }
 }
 
-
-.animate-marquee {
-  animation: marquee-rtl 15s linear infinite;
+.announcement-bar {
+  width: 100%;
+  overflow: hidden;
+  background: #1c1c1c;
+  display: flex;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.2);
 }
 
+.announcement-content {
+  display: flex;
+  flex-shrink: 0;
+  min-width: 100%;
+  animation: marquee 45s linear infinite !important;
+  /* Force slower animation */
+  color: #c5a059;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  gap: 120px;
+  padding: 10px 20px;
+}
 
+.announcement-content span {
+  flex-shrink: 0;
+}
 
-
-
-.animate-marquee:hover {
+/* Remove hover pause for now to ensure it's visible */
+/* .announcement-content:hover {
   animation-play-state: paused;
-}
+} */
 
 /* iOS Glass Effect */
 .glass {
@@ -140,16 +169,7 @@ html {
   -webkit-backdrop-filter: blur(20px) !important;
 }
 
-.btn-ios {
-  @apply px-4 py-2 rounded-none text-sm font-bold transition-all duration-300 active:scale-95 shadow-md shadow-primary/20;
-  background-color: var(--color-primary);
-  color: white;
-}
 
-.btn-ios:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
